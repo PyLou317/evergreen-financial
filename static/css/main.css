@@ -1,0 +1,89 @@
+body {
+  background-color: #f8f9fa; /* Light background for the whole page */
+}
+
+.hero-section {
+  background-color: #ffffff; /* Plain solid white background for the hero section */
+  position: relative; /* For absolute positioning of elements like the metric box */
+  overflow: hidden; /* Hide anything that goes outside */
+  height: 75vh;
+}
+
+.hero-content {
+  max-width: 900px; /* Constrain content width */
+  margin: 0 auto;
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 6vw, 4.5rem); /* Responsive font size */
+  font-weight: 800; /* Extra bold */
+  line-height: 1.1;
+  color: #212529; /* Dark text */
+}
+
+.hero-subtitle {
+  font-size: clamp(1rem, 2vw, 1.35rem); /* Responsive font size */
+  color: #6c757d; /* Muted text */
+  max-width: 700px;
+  /* Using Bootstrap margin utilities below */
+}
+
+.btn-custom-dark {
+  background-color: #212529; /* Dark button background */
+  border-color: #212529;
+  color: white;
+  padding: 0.9rem 2.5rem; /* Custom padding for precise button size */
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+.btn-custom-dark:hover {
+  background-color: #343a40;
+  border-color: #343a40;
+  color: white;
+}
+
+.social-proof-button {
+  background-color: #f1f3f5;
+  border: 1px solid #dee2e6;
+  color: #495057;
+  font-size: 0.85rem;
+  padding: 0.3rem 1rem;
+  border-radius: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+.social-proof-button:hover {
+  background-color: #e9ecef;
+}
+
+
+/* Dashboard Preview Section */
+.dashboard-preview-section {
+  /* This negative margin creates the overlap effect from the screenshot */
+  margin-top: -11rem;
+  position: relative;
+  z-index: 10;
+}
+
+.dashboard-img {
+  max-width: 1200px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+}
+
+/* Responsive adjustments */
+@media (max-width: 767.98px) {
+  .metric-box {
+    display: none !important; /* Hide on small screens */
+  }
+  .hero-section {
+    padding-bottom: 3rem; /* Less padding on small screens if no overlap */
+  }
+  .dashboard-preview-section {
+    margin-top: -3rem; /* Less overlap on small screens */
+  }
+}
