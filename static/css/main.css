@@ -59,27 +59,102 @@ body {
   background-color: #e9ecef;
 }
 
-
-/* Dashboard Preview Section */
+/* Dashboard Preview Section
 .dashboard-preview-section {
   /* This negative margin creates the overlap effect from the screenshot */
-  margin-top: -11rem;
-  position: relative;
+  /* margin-top: -4rem; */
+  /* position: relative; */
   /* z-index: 10; */
-}
+/* } */
 
-.dashboard-img {
+/* .dashboard-img {
   max-width: 1200px;
   border: 1px solid rgba(0, 0, 0, 0.05);
   box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
-}
+} */
 
-/* Responsive adjustments */
-@media (max-width: 767.98px) {
+
+/* @media (max-width: 767.98px) {
   .hero-section {
-    padding-bottom: 3rem; /* Less padding on small screens if no overlap */
+    padding-bottom: 3rem;
   }
   .dashboard-preview-section {
-    margin-top: -3rem; /* Less overlap on small screens */
+    margin-top: -3rem;
+    min-width: 0;
+  }
+  .dashboard-preview-section .container {
+    justify-content: start !important;
+  }
+  .dashboard-img {
+    max-width: 800px;
+    overflow: hidden;
+  }
+} */
+
+.dashboard-preview-section {
+  /* Start with a smaller overlap for mobile, or no overlap if it looks better */
+  margin-top: -3rem; /* Adjust this value for mobile overlap */
+  position: relative;
+  /* Add z-index here if this section needs to sit above another section below it
+     on all screen sizes. E.g., z-index: 10; */
+}
+
+/* Ensure the image itself is responsive within its container */
+.dashboard-img {
+  max-width: 100%; /* Crucial: Image will never exceed its container's width */
+  height: auto; /* Crucial: Maintains aspect ratio */
+  display: block; /* Removes extra space below image */
+  border: 1px solid rgba(0, 0, 0, 0.05); /* Keep border */
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1); /* Slightly smaller shadow for mobile */
+  border-radius: 10px; /* Add some rounded corners for a modern look */
+  overflow: hidden; /* Ensures shadow/border respects border-radius */
+  margin-left: auto; /* Center the image horizontally within its column */
+  margin-right: auto; /* Center the image horizontally within its column */
+}
+
+/* If .dashboard-img is a container and you have an <img> inside it: */
+.dashboard-img img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* --- MEDIA QUERIES (Using min-width, from smallest to largest) --- */
+
+/* For devices larger than 576px (Bootstrap 'sm' breakpoint) */
+/* Adjust this breakpoint if you want changes to kick in earlier/later */
+@media (min-width: 576px) {
+  .dashboard-preview-section {
+    margin-top: -4rem; /* Increase overlap for small tablets/larger phones */
+  }
+  .dashboard-img {
+    /* No need for max-width: 800px here if it's already max-width: 100% of its fluid column */
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175); /* Restore larger shadow */
+  }
+  .dashboard-preview-section .container {
+    justify-content: center;
+  }
+}
+
+/* For devices larger than 768px (Bootstrap 'md' breakpoint - typically tablets/small laptops) */
+@media (min-width: 768px) {
+  .dashboard-preview-section {
+    margin-top: -8rem; /* Further increase overlap */
+  }
+  .hero-section {
+        padding-bottom: 3rem; /* Adjust padding for hero section if it affects overlap */
+  }
+  .dashboard-img {
+    max-width: 900px;
+  }
+}
+
+/* For devices larger than 992px (Bootstrap 'lg' breakpoint - typically desktops) */
+@media (min-width: 992px) {
+  .dashboard-preview-section {
+    margin-top: -4rem; /* Full overlap for large desktops */
+  }
+  .dashboard-img {
+    max-width: 1200px; /* Cap the image width for very large screens */
   }
 }

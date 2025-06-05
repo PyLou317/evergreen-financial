@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load account %}
 {% load static %}
 
 {% block title %}Evergreen Financial - Your Path to Financial Growth{% endblock %}
@@ -24,8 +24,8 @@
             grow, and manage your money through every stage of life.
         </p>
 
-        <a href="#" class="btn btn-custom-dark btn-lg mb-4">
-            Start your free trial
+        <a href="{% url 'dashboard:dashboard_home' %}" class="btn btn-custom-dark btn-lg mb-4">
+            Start today!
         </a>
 
         <p class="small text-muted mb-3">You can also <a href="https://github.com/PyLou317/evergreen-financial" target="blank" class="text-decoration-none text-dark fw-bold">explore our source code here</a>.</p>
