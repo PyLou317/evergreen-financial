@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'transactions',
     'category',
     'dashboard',
+    'upload',
     
     # 3rd Party
     'django.contrib.sites', 
