@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+{% load static %}
+
+{% block content %}
+  <div>
+    {% if expense_summary.total_expense_amount or income_summary.total_income_amount %}
+        <div class="container min-vh-100 mb-5">
+            <div class="m-3">
+                {% firstof user.first_name user as name %}
+                <h2 class="dashboard-greeting-msg">Good {{ now|greeting }}, {{ name }}!</h2>   
+                <h5>This is your financial overview</h5>
+            </div>
+
+            <!-- Cards -->
+            <div class="row flex-wrap justify-content-center mx-1 gap-1 row-cols-sm-1 row-cols-lg-4">
+                <div class="db_card flex-grow-1 card border-0 rounded-3 shadow m-2">
+                    <div class="card-body">
+                    <h5 class="card-title text-primary fw-semibold">Net Income</h5>
+                    <h6 class="card-subtitles mb-2 text-muted fw-medium">Yearly</h6>
+                    <h2 id="profit-num" class="card-text text-end fw-bold">${{ income_summary.total_income_amount|add:expense_summary.total_expense_amount|floatformat:0 }}</h2>
+                    </div>
+                </div>
+
+                <div class="db_card card flex-grow-1 border-0 rounded-3 shadow m-2">
+                    <div class="card-body p-4">
+                    <h5 class="card-title text-primary fw-semibold">Income Total</h5>
+                    <h6 class="card-subtitles mb-2 text-muted fw-medium">Yearly</h6>
+                    <h2 class="card-text text-end fw-bold">${{ income_summary.total_income_amount|floatformat:0 }}</h2>
+                    </div>
+                </div>
+
+                <div class="db_card card flex-grow-1 border-0 rounded-3 shadow m-2">
+                    <div class="card-body">
+                    <h5 class="card-title text-primary fw-semibold">Expense Total</h5>
+                    <h6 class="card-subtitles mb-2 text-muted fw-medium">Yearly</h6>
+                    <h2 id="expense-num" class="card-text text-end fw-bold">${{ expense_summary.total_expense_amount|floatformat:0 }}</h2>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts -->
+            <div class="d-flex flex-wrap">
+                <!--===== Income Line Chart =====-->
+                <div class="db_card flex-grow-1 card border-0 rounded-3 shadow my-2 mx-2 col-lg-6 col-md-12">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary fw-semibold">Income</h5>
+                        <h6 class="card-subtitles mb-2 text-muted fw-medium">Total by Month</h6>
+                        <div>
+                            <canvas class="income_chart" id="monthly-income-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                
+                <!--===== Top Categoreis List =====-->
+                <div class="db_card flex-grow-1 card border-0 rounded-3 shadow my-2 mx-2 col-lg-5 col-md-12">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5 class="card-title text-primary fw-semibold">Expenses</h5>
+                                <h6 class="card-subtitles mb-2 text-muted fw-medium">Top 5 Spending Categories</h6>
+                            </div>
+                            <div class="expense-btn-div col-md-6 d-flex justify-content-end align-items-start">
+                                <a class="btnViewMore" href="{% url 'finance_tracker:categories' %}">More...</a>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="list-group">
+                                {% for category in categories %}
+                                <div class="list-group-item d-flex justify-content-between align-items-center rounded-3 mb-2">
+                                    <div class="d-flex align-items-center">
+                                        {% if category.total_amount < 0 %}
+                                        <span class="category-icon bg-danger rounded-1 px-1 py-0 me-3">
+                                            <i class="bi bi-caret-down"></i>
+                                        </span>
+                                        {% else %}
+                                        <span class="category-icon d-flex bg-success rounded-1 me-2">
+                                            <i class="bi bi-caret-up"></i>
+                                        </span>
+                                        {% endif %}
+                                        <div>
+                                            <h6 class="mb-0">{{ category.name }}</h6>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        {% if category.total_amount < 0 %}
+                                        <span class="text-danger fw-bold">$ {{ category.total_amount|floatformat:0 }}</span>
+                                        {% else %}
+                                        <span class="text-success fw-bold">$ {{ category.total_amount|floatformat:0 }}</span>
+                                        {% endif %}
+                                        <button class="btn btn-sm text-muted ms-2 p-0">
+                                            <i class="bi bi-three-dots-vertical"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--===== Expense Charts =====-->
+            <div class="d-flex flex-wrap my-2">
+            <!--===== Monthly Bar Chart =====-->
+            <div class="card-body db_card card border-0 rounded-3 shadow mx-2 col-lg-6 col-md-12 col-sm-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5 class="card-title text-primary fw-semibold">Monthly Expense</h5>
+                        <h6 class="card-subtitles mb-2 text-muted fw-medium">By Category</h6>
+                    </div>
+                    <div class="col d-flex justify-content-end align-items-center">
+                        <select id="month-selector" class="form-select form-select-sm" aria-label="monthly expense month selector">
+                            {% comment %} <option selected>Select Month</option> {% endcomment %}
+                            {% for month in months %}
+                            <option value="{{ month }}">{{ month }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <canvas id="expense-by-month-chart"></canvas>
+                </div>
+            </div>
+            
+            <!--===== Donut Chart =====-->
+                <div class="db_card card border-0 rounded-3 shadow mx-2 col-lg-4 col-md-8 col-sm-12">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5 class="card-title text-primary fw-semibold">Yearly Expenses</h5>
+                                <h6 class="card-subtitles mb-2 text-muted fw-medium">By Category</h6>
+                            </div>
+                        </div>
+                        <div class="m-3">
+                            <canvas id="total-expense-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        
+        </div>
+
+    {% else %}
+      {% comment %} {% include 'finance_tracker/components/upload_notify.html' %} {% endcomment %}
+    {% endif %}
+
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+  <script src="{% static 'finance_tracker/js/dashboard.js' %}"></script>
+{% endblock %}
