@@ -1,4 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.http import JsonResponse
+from django.urls import reverse_lazy
 
 # Django Models
 from django.db import models
@@ -13,7 +15,6 @@ from django.contrib.auth.decorators import login_required
 
 # Misc
 from django.utils import formats
-from .utils import categorize_transaction, add_header
 from io import StringIO
 from decimal import Decimal
 from datetime import datetime
@@ -85,3 +86,71 @@ def dashboard_view(request):
     }
     
     return render(request, 'dashboard/index.html', context)
+
+
+
+# ----===== Categories API =====---- #
+@login_required
+def category_expenses_json(request):
+    transactions = Transaction.objects.exclude(
+        category__name='Income').filter(
+        owner=request.user
+    )
+
+    category_expenses = transactions.values('category__name').annotate(
+        total_expense=Sum('amount'),
+        transaction_count=Count('id')
+    ).order_by('-total_expense')
+    
+    # Format the data for JSON response
+    category_data = []
+    for item in category_expenses:        
+        category_data.append({
+            'category': item['category__name'], 
+            'total_expense': str(item['total_expense']),
+            'transaction_count': item['transaction_count']
+        })
+        
+    return JsonResponse(category_data, safe=False)
+
+
+
+
+# -----===== Income API (Graph #2) ======----- #
+@login_required
+def income_total_json(request):
+    year = request.GET.get('year')
+    if not year:
+        year = 2024
+        # datetime.today().year
+    else:
+        year = int(year)
+
+    # Filter income transactions for the year
+    income_transactions_for_year = Transaction.objects.filter(
+        owner=request.user,
+        date__year = year,
+        category__name = 'Income'
+    )
+        
+    # Group by month and category, and sum amounts
+    monthly_income_data = income_transactions_for_year.values(
+        'date__month', 'category__name'
+    ).annotate(
+        total_income=Sum('amount')
+    ).order_by('date__month', 'category__name')
+    
+    
+    # Format the data for JSON response
+    income_data = []
+    for item in monthly_income_data:
+        month_number = item['date__month']
+        month_name = datetime(year=year, month=month_number, day=1).strftime('%B')
+        
+        income_data.append({
+            'month': month_name,
+            'category': item['category__name'],
+            'total_income': float(item['total_income'])
+        })
+
+    return JsonResponse(income_data, safe=False) # Return JSON response
