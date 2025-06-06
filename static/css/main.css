@@ -1,3 +1,16 @@
+:root {
+  --font: 'Inter', sans-serif;
+  --body-color: #637381;
+  --background-color: black;
+  --heading-color: #212b36;
+  /* --primary-color: #355E3B; */
+  --primary-color-2: #79d7be;
+  --primary-color: rgb(75, 192, 192);
+  --accent-color: #ff7f50;
+  --gradient-color: linear-gradient(to right, #ff7f50, #ff6347, #ff4500);
+  --white: #ffffff;
+}
+
 body {
   background-color: #f8f9fa; /* Light background for the whole page */
 }

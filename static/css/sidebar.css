@@ -1,0 +1,44 @@
+#menu-close-btn {
+  color: white;
+}
+
+.offcanvas {
+  position: fixed;
+}
+
+#welcome-title {
+  margin-top: 4rem;
+}
+
+.offcanvas .nav-link:hover {
+  font-size: 1.2rem;
+}
+
+.menu-divider {
+  width: 230%;
+}
+
+#menu-close-btn {
+  color: white;
+}
+
+.offcanvas {
+  position: fixed;
+}
+
+#welcome-title {
+  margin-top: 50px;
+}
+
+.offcanvas .nav-link:hover {
+  font-size: 1.2rem;
+}
+
+.menu-divider {
+  width: 230%;
+}
+
+
+.offcanvas.show:not(.hiding), .offcanvas.showing {
+    width: fit-content;
+}
