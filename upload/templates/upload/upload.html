@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% crispy upload_form upload_form.helper %}
+
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'upload/css/main.css' %}">
+{% endblock extra_css %}
+
+
+{% block content %}
+    {% comment %}------------ Upload File ------------{% endcomment %}
+    {% if user.is_authenticated %}
+      <div id="uploadPage-div" class="container d-flex justify-content-center align-items-center text-center wrapper">
+        <div id="upload-container" class="container shadow">
+          <h1 id="upload-file-header">Upload a file</h1>
+          <div class="upload-icon-div">
+            <div class="border-container">
+              <div class="icons bi-4x d-flex justify-content-center ms-4 mb-2 fa-4x">
+                <i class="bi bi-filetype-csv"></i>
+                <i class="bi bi-filetype-csv"></i>
+                <i class="bi bi-filetype-csv"></i>
+              </div>
+            </div>
+          </div>
+          <div>
+            {% csrf_token %}
+            {% crispy upload_form %}
+            <div id="fileTypeError" class="text-danger d-none"></div>
+          </div>
+        </div>
+      </div>
+
+      {% comment %}------------ Login Container------------{% endcomment %}
+    {% else %}
+      {% include 'users/components/login_container.html' %}
+    {% endif %}
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+  <script src="{% static 'upload/js/upload.js' %}"></script>
+{% endblock %}
