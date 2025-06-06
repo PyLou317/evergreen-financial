@@ -2,6 +2,11 @@
 {% load custom_filters %}
 {% load static %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static "dashboard/css/main.css" %}">
+{% endblock extra_css %}
+
+
 {% block content %}
   <div>
     {% if expense_summary.total_expense_amount or income_summary.total_income_amount %}
@@ -61,7 +66,7 @@
                                 <h6 class="card-subtitles mb-2 text-muted fw-medium">Top 5 Spending Categories</h6>
                             </div>
                             <div class="expense-btn-div col-md-6 d-flex justify-content-end align-items-start">
-                                <a class="btnViewMore" href="{% url 'finance_tracker:categories' %}">More...</a>
+                                <a class="btnViewMore" href="#">More...</a>
                             </div>
                         </div>
                         <div>
@@ -142,12 +147,12 @@
         </div>
 
     {% else %}
-      {% comment %} {% include 'finance_tracker/components/upload_notify.html' %} {% endcomment %}
+      {% include 'upload/upload_notify.html' %}
     {% endif %}
 
   </div>
 {% endblock %}
 
 {% block extra_js %}
-  <script src="{% static 'finance_tracker/js/dashboard.js' %}"></script>
+  <script src="{% static 'dashboard/js/dashboard.js' %}"></script>
 {% endblock %}
