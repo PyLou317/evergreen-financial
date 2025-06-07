@@ -1,0 +1,57 @@
+.dashboard-greeting-msg {
+  background: var(--gradient-color);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.db_card {
+  background-color: #f9fafb;
+}
+
+#expense-num {
+  color: rgb(227, 5, 5);
+}
+
+#profit-num {
+  color: green;
+}
+
+.bi-caret-up,
+.bi-caret-down {
+  color: white;
+}
+
+.category-icon {
+  width: 30px;
+  height: 30px;
+  font-size: 1.4rem;
+}
+
+#month-selector {
+  width: fit-content;
+}
+
+.income_chart {
+  max-height: 250px;
+}
+
+.btnViewMore {
+  background-image: var(--gradient-color);
+  border: none;
+  border-radius: 30px;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.btnViewMore:hover {
+  background-image: linear-gradient(to right, #ff8c69, #ff6a4a, #ff5733);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}

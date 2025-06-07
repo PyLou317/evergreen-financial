@@ -86,9 +86,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         borderWidth: 3,
                         fill: {
                             target: 'origin',
-                            above: 'rgba(75, 192, 192, 0.46)'
+                            above: 'rgba(255,127,80, 0.5)'
                         },
-                        borderColor: 'rgb(75, 192, 192)',
+                        borderColor: 'rgb(255,127,80)',
                     }]
                 },
                 options: {
@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ------- Monthly Expense Chart ------- //
     function renderChart() {
-        fetch('/finance_tracker/monthly_expense_json/')
+        fetch('/dashboard/monthly_expense_json/')
             .then(resp => resp.json())
             .then(monthlyExpenseData => {
                 console.log('Fetched monthlyExpenseData (flat):', monthlyExpenseData);

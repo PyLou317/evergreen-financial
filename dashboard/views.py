@@ -154,3 +154,28 @@ def income_total_json(request):
         })
 
     return JsonResponse(income_data, safe=False) # Return JSON response
+
+
+# -----===== Monthly Expense API (Graph #3) =====----- #
+@login_required
+def monthly_expense_json(request):
+
+    monthly_expenses = Transaction.objects.exclude(
+        category__name='Income').filter(
+        owner=request.user,
+    ).annotate(
+        month=TruncMonth('date')
+    ).values('category__name', 'month').annotate(
+        total_expense=Sum('amount')
+    ).order_by('category__name', 'month')
+    
+    # Format the data for JSON response
+    monthly_expense_data = []
+    for item in monthly_expenses:
+        monthly_expense_data.append({
+            'month': item['month'].strftime('%B %Y'), 
+            'category': item['category__name'],
+            'total_expense': float(item['total_expense'] or 0)
+        })
+        
+    return JsonResponse(monthly_expense_data, safe=False)
