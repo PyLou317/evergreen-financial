@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static "transactions/css/main.css" %}">
+{% endblock extra_css %}
+
+{% block content %}
+  <div class="container container-transaction-page mx-auto px-sm-0">
+    <div class="mb-5 mt-2">
+      <h2 class="justin-content-center"><i class="bi bi-list-ul"></i> Transactions</h2>
+    </div>
+
+        {% comment %}------ Header ------{% endcomment %}
+        <div class="row d-flex mt-4">
+            {% comment %}------ Stats Bar ------{% endcomment %}
+            <div class="stats-bar hstack col-lg-9 col-sm-12 justify-content-center align-self-center mx-auto" style="height: auto;">
+                <div class="flex-grow-1 py-2 px-4">
+                    <p class="fw-lighter">Date Range</p>
+                    <h4 id="date-range"></h4>
+                </div> 
+                <div class="vr"></div>
+                <div class="flex-grow-1 py-2 px-4">
+                    <p class="fw-lighter">Transactions</p>
+                    <h4 id="transaction-count"></h4>
+                </div> 
+                <div class="vr"></div>
+                        <div class="flex-grow-1 py-2 px-4">
+                            <p class="fw-lighter">Total</p>
+                            <h4 id="stats-total"></h4>
+                        </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-between mt-5">
+            {% comment %}------ Search Field ------{% endcomment %}
+            <div class="col-lg-3 col-md-6 col-sm-12 align-self-end">
+                <form method="get" class="mb-3">
+                    <div class="input-group" style="--search-icon-url: url({% static 'finance_tracker/images/transaction_list/search.svg' %});">
+                        <input id="search-bar"type="text" class="form-control transaction-search-field" placeholder="Search transactions..." name="search_term" transaction-search-bar/>
+                    </div>
+                </form>
+            </div>
+            {% comment %}------ Category Filter Menu ------{% endcomment %}
+            <div class="col-auto ms-auto clearFilterDiv">
+                <span class="btn clearFilterBtn hide">Clear Filter</span>
+            </div>
+            <div class="col-auto">
+                <div class="dropdown filter-badge open">
+                    <a
+                        class="btn btn-sm text-light dropdown-toggle"
+                        type="button"
+                        id="filter-badge"
+                        data-bs-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                    >
+                    <i class="bi bi-filter"></i> Category Filter
+                    </a>
+                    <div class="dropdown-menu filter-dropdown-menu" aria-labelledby="triggerId">
+                        </div>
+                </div>
+            </div>
+        </div> 
+        
+        <div id="transaction-table" class="table-responsive mt-3">
+            <table class="table table-hover" style="width: 100%;">
+                <thead>
+                    <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider table align-middle" transaction-row-container></tbody>
+            </table>
+
+            {% comment %}------ Loader ------{% endcomment %}
+            <div class="loader-div">
+                <div class="loader"></div>
+            </div>
+        </div> 
+
+        
+        {% comment %}------ Pagination ------{% endcomment %}
+        <div class="text-center pagination-div">
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item previous-page disabled">
+                        <a class="page-link previousUrl" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo; Previous</span>
+                        </a>
+                    </li>
+                    <li class="page-item active " aria-current="page">
+                        <a class="page-link current-page" href="#"></a>
+                    </li>
+                    <li class="page-item next-page disabled">
+                        <a class="page-link nextUrl" href="#" aria-label="Next">
+                            <span aria-hidden="true">Next &raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        </div>
+    </div>
+
+    
+    {% comment %} <a class="me-1 mb-1">
+        <span class="badge rounded-pill category-filter-badge"></span>
+    </a> {% endcomment %}
+    
+    {% comment %}------ Filter Btn ------{% endcomment %}
+    <template filterButtonTemplate>
+        <a class="dropdown-item category-filter-badge"></a>
+    </template>
+
+    {% comment %}------ Transaction List Table ------{% endcomment %}
+    <template transaction-row-template>
+        <tr>
+            <td class="transaction-date">
+                <span class="desktop-date" transaction-desktop-date></span> 
+                <span class="mobile-date" transaction-mobile-date></span>
+            </td>
+            <td class="transaction-description" transaction-description></td>
+            <td><span id="category-pill" class="badge badge-pill category-badge text-light" transaction-category></span></td>
+            <td transaction-amount></td>
+            <td class="transaction-action">
+                {% comment %} {% url 'finance_tracker:edit_transaction' pk='0' %} {% endcomment %}
+                <a href="#" data-edit-url="#">
+                    <i class="bi bi-pencil-square text-success edit-link"></i>
+                </a> |
+                {% comment %} {% url 'finance_tracker:delete_transaction' pk='0' %} {% endcomment %}
+                <a href="#" data-delete-url="#">
+                    <i class="bi bi-trash3-fill text-secondary delete-link"></i>
+                </a>
+            </td>
+        </tr>
+    </template>
+{% endblock %}
+
+{% block extra_js %}
+  <script type="module" src="{% static 'transactions/js/main.js' %}"></script>
+{% endblock %}

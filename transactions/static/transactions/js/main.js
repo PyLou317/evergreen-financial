@@ -1,11 +1,11 @@
 import { fetchData } from './API.js';
 import { renderHTML, renderStatsBar } from './UI.js';
-import { showSpinner, hideSpinner, forceHideSpinner } from '../../../dashboard/static/js/spinner.js';
+import { showSpinner, hideSpinner, forceHideSpinner } from './spinner.js';
 import { setupPagination } from './pagination.js';
 import { getCategories } from './category_filters.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-  const apiUrl = '/finance_tracker/transactions_api/';
+  const apiUrl = '/transactions/transactions_api/';
   const tableContent = document.querySelector('[transaction-row-container]');
   const previousPageBtn = document.querySelector('.previous-page a.previousUrl');
   const nextPageBtn = document.querySelector('.next-page a.nextUrl');
