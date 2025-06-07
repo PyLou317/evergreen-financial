@@ -2,6 +2,10 @@
   color: white;
 }
 
+#side_bar_nav {
+    padding-right: 20px;
+}
+
 .offcanvas {
   position: fixed;
 }
