@@ -21,6 +21,7 @@
         <link rel="stylesheet" href="{% static "css/main.css" %}">
         <link rel="stylesheet" href="{% static "css/sidebar.css" %}">
         <link rel="stylesheet" href="{% static "dashboard/css/dashboard.css" %}">
+        <link rel="stylesheet" href="{% static "transactions/css/transaction_edit.css" %}">
 
         <!-- ===== Fonts ===== -->
        
@@ -31,7 +32,7 @@
         <header>
             {% block nav_bar %}
             {{ block.super }}
-                <button id="menu-button" class="btn float-start" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" role="button">
+                <button id="menu-button" class="btn" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" role="button">
                     <i class="bi bi-arrow-right-square-fill fs-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvas"></i>
                 </button>
                 {% include 'sidebar.html' %}
