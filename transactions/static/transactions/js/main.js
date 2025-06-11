@@ -47,26 +47,30 @@ document.addEventListener('DOMContentLoaded', () => {
           const gradientColor = getComputedStyle(filterBtn).getPropertyValue('--gradient-color');
 
           categoryFilters.forEach((btn) => {
-            btn.style.backgroundColor = '';
-            btn.style.backgroundImage = '';
-          });
-          button.style.backgroundImage = gradientColor;
+              btn.style.backgroundColor = '';
+              btn.style.backgroundImage = '';
+            });
+            button.style.backgroundImage = gradientColor;
+            
+            const params = new URLSearchParams();
+            params.append('category', categoryName);
+            const filterUrl = `${apiUrl}?${params.toString()}`;
 
-          const params = new URLSearchParams();
-          params.append('category', categoryName);
-          const filterUrl = `${apiUrl}?${params.toString()}`;
-
-          try {
-            const filterData = await fetchData(filterUrl);
-            if (clearFilterBtn) {
-              clearFilterBtn.classList.remove('hide');
-              clearFilterBtn.addEventListener('click', () => {
-                main();
-                categoryFilters.forEach((btn) => {
-                  btn.style.backgroundColor = '';
-                  btn.style.backgroundImage = '';
-                });
-                clearFilterBtn.classList.add('hide');
+            clearFilterBtn.classList.remove('hidden');
+            filterBtn.classList.add('hidden');
+            
+            
+            try {
+                const filterData = await fetchData(filterUrl);
+                if (clearFilterBtn) {
+                    clearFilterBtn.addEventListener('click', () => {
+                        main();
+                        categoryFilters.forEach((btn) => {
+                            btn.style.backgroundColor = '';
+                            btn.style.backgroundImage = '';
+                        });
+                        clearFilterBtn.classList.add('hidden');
+                        filterBtn.classList.remove('hidden');
               });
             }
             renderHTML(filterData.results);

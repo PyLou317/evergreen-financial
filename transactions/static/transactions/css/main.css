@@ -9,7 +9,7 @@
 }
 
 .filter-dropdown-menu {
-  max-height: 400px;
+  max-height: 300px;
   overflow-y: scroll;
   scroll-behavior: smooth;
   cursor: pointer;
@@ -40,20 +40,21 @@
   background-image: linear-gradient(to right, #ff8c69, #ff6a4a, #ff5733);
 }
 
-.clearFilterDiv {
-  margin-top: 5px;
-}
-
 .clearFilterBtn {
   background-color: var(--body-color);
   border: none !important;
   border-radius: 30px;
   color: white;
-  padding: 3px 8px;
+  padding: 8px 15px;
   text-align: center;
   text-decoration: none;
   font-size: 12px;
   cursor: pointer;
+}
+
+.clearFilterBtn:hover {
+    background-color: grey;
+    color: white;
 }
 
 #transaction-table {
@@ -157,7 +158,7 @@
 }
 
 .category-filter-badge:hover {
-  font-size: 0.8rem;
+  font-size: 1.1rem;
 }
 
 .show-all-badge:hover {
