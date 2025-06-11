@@ -1,0 +1,28 @@
+{% extends 'base.html' %} 
+{% load crispy_forms_tags %}
+{% load static %} 
+
+{% block content %}
+    <div id="update-container" class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow p-4">
+                    <div class="card-body">
+                        <h2 class="card-title text-center mb-4">Update Transaction</h2>
+                        <form method="post">
+                            <div>
+                                {% csrf_token %}
+                                {% crispy form %}
+                                <div class="text-center mt-3">
+                                    <button type="submit" class="btn btn-dark btn-block">Update Transaction</button>
+                                    <a href="{% url 'transactions:transactions' %}" class="btn btn-secondary">Cancel</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+{% endblock content %}
