@@ -51,12 +51,11 @@ export function renderHTML(transactionData) {
       0,
       editBaseUrl.lastIndexOf('0')
     )}${transaction_id}${editBaseUrl.slice(editBaseUrl.lastIndexOf('0') + 1)}`;
+      
     transactionDeleteBtn.parentElement.href = `${deleteBaseUrl.slice(
       0,
       deleteBaseUrl.lastIndexOf('0')
-    )}${transaction_id}${deleteBaseUrl.slice(
-      deleteBaseUrl.lastIndexOf('0') + 1
-    )}`;
+    )}${transaction_id}${deleteBaseUrl.slice(deleteBaseUrl.lastIndexOf('0') + 1)}`;
 
     transactionRowContainer.append(card);
 
