@@ -10,12 +10,8 @@
   background-color: #f9fafb;
 }
 
-#expense-num {
-  color: rgb(227, 5, 5);
-}
-
-#profit-num {
-  color: green;
+.text-primary {
+    color: black !important;
 }
 
 .bi-caret-up,
