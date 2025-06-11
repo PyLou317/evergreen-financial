@@ -16,8 +16,8 @@ from django.db.models import Q, Sum, Count
 from django.db.models.functions import TruncMonth
 
 
-# Django Forms
-from django import forms
+# Forms
+from .forms import *
 
 # Django Auth
 from django.contrib.auth.decorators import login_required
@@ -44,12 +44,39 @@ from rest_framework.response import Response
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
 
-# Create your views here.
+
+
 
 class TransactionListView(LoginRequiredMixin, ListView):
-    template_name = 'finance_tracker/transaction_list.html'
+    template_name = 'transactions/transaction_list.html'
     model = Transaction
     context_object_name = 'transactions'
+    
+    
+    
+class TransactionUpdateView(LoginRequiredMixin, UpdateView):
+    model = Transaction
+    form_class = TransactionForm
+    template_name_suffix = "_update"
+    
+    # Disable the date field and amount from user
+    def get_form(self, form_class = None):
+        form = super().get_form(form_class)
+        form.fields['date'].disabled = True
+        form.fields['amount'].disabled = True
+        return form
+    
+    def get_success_url(self):
+        return reverse_lazy('finance_tracker:transactions')
+    
+    
+    
+class TransactionDeleteView(LoginRequiredMixin, DeleteView):
+    model = Transaction
+    template_name_suffix = "_delete"
+    
+    def get_success_url(self):
+        return reverse_lazy('finance_tracker:transactions')
 
 
 
