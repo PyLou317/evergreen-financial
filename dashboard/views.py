@@ -12,6 +12,7 @@ from django.db.models.functions import TruncMonth
 
 # Django Auth
 from django.contrib.auth.decorators import login_required
+from django.utils import timezone
 
 # Misc
 from django.utils import formats
@@ -44,6 +45,8 @@ def dashboard_view(request):
     
     expense_total_aggregation = expense_transactions.aggregate(
         total_expense_amount=Sum('amount'))
+    
+    today = datetime.today()
     
     # Pass months to template for drop down btn selector
     months_data = expense_transactions.annotate(
@@ -82,7 +85,8 @@ def dashboard_view(request):
         'categories': categories,
         'income_summary': income_total_aggregation,
         'expense_summary': expense_total_aggregation,
-        'months': months
+        'months': months,
+        'today': today
     }
     
     return render(request, 'dashboard/index.html', context)
