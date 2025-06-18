@@ -72,14 +72,14 @@ def dashboard_view(request):
         total_income_amount=Sum('amount')
      )
     
-    top3_categories = Category.objects.exclude(
+    categories = Category.objects.exclude(
             name='Income').annotate(
             total_amount=Sum('transaction__amount', filter=models.Q(
                 transaction__owner=request.user))
-            ).exclude(total_amount=0 or None).order_by('total_amount')[:5]
+            ).exclude(total_amount=0 or None).order_by('total_amount') #[:5]
     
     context = {
-        'categories': top3_categories,
+        'categories': categories,
         'income_summary': income_total_aggregation,
         'expense_summary': expense_total_aggregation,
         'months': months

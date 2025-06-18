@@ -18,118 +18,117 @@
             </div>
 
             <!-- Cards -->
-            <div class="row flex-wrap justify-content-center mx-1 gap-1 row-cols-sm-1 row-cols-lg-4">
-                <div class="db_card flex-grow-1 card border-0 rounded-3 shadow m-2">
+            <div class="row flex-wrap justify-content-center mx-2 gap-3 row-cols-sm-1 row-cols-lg-4">
+
+                <div class="db_card flex-grow-1 card border-1 rounded-3">
                     <div class="card-body">
-                    <h5 class="card-title text-primary fw-semibold">Net Income</h5>
-                    <h6 class="card-subtitles mb-2 text-muted fw-medium">Yearly</h6>
+                    <h5 class="card-title text-primary fw-semibold">Net Balance</h5>
+                    <h6 class="card-subtitles mb-2 text-muted fw-medium">YTD</h6>
                     <h2 id="profit-num" class="card-text text-end fw-bold">${{ income_summary.total_income_amount|add:expense_summary.total_expense_amount|floatformat:0 }}</h2>
                     </div>
                 </div>
 
-                <div class="db_card card flex-grow-1 border-0 rounded-3 shadow m-2">
-                    <div class="card-body p-4">
-                    <h5 class="card-title text-primary fw-semibold">Income Total</h5>
-                    <h6 class="card-subtitles mb-2 text-muted fw-medium">Yearly</h6>
+                <div class="db_card card flex-grow-1 border-1 rounded-3">
+                    <div class="card-body">
+                    <h5 class="card-title text-primary fw-semibold">Total Income</h5>
+                    <h6 class="card-subtitles mb-2 text-muted fw-medium">YTD</h6>
                     <h2 class="card-text text-end fw-bold">${{ income_summary.total_income_amount|floatformat:0 }}</h2>
                     </div>
                 </div>
 
-                <div class="db_card card flex-grow-1 border-0 rounded-3 shadow m-2">
+                <div class="db_card card flex-grow-1 border-1 rounded-3">
                     <div class="card-body">
-                    <h5 class="card-title text-primary fw-semibold">Expense Total</h5>
-                    <h6 class="card-subtitles mb-2 text-muted fw-medium">Yearly</h6>
+                    <h5 class="card-title text-primary fw-semibold">Total Expenses</h5>
+                    <h6 class="card-subtitles mb-2 text-muted fw-medium">YTD</h6>
                     <h2 id="expense-num" class="card-text text-end fw-bold">${{ expense_summary.total_expense_amount|floatformat:0 }}</h2>
                     </div>
                 </div>
             </div>
 
             <!-- Charts -->
-            <div class="d-flex flex-wrap">
+            <div class="d-flex flex-wrap mt-2">
                 <!--===== Income Line Chart =====-->
-                <div class="db_card flex-grow-1 card border-0 rounded-3 shadow my-2 mx-2 col-lg-6 col-md-12">
+                <div class="db_card flex-grow-1 card border-1 rounded-3 m-2 col-lg-6 col-md-12">
+                    <div class="card-header border-bottom-0 py-3">
+                        <h5 class="card-title text-primary fw-semibold">Total Income</h5>
+                        <h6 class="card-subtitles text-muted fw-medium mb-0">By Month</h6>
+                    </div>
                     <div class="card-body">
-                        <h5 class="card-title text-primary fw-semibold">Income</h5>
-                        <h6 class="card-subtitles mb-2 text-muted fw-medium">Total by Month</h6>
-                        <div>
+                        <div class="d-flex align-items-center">
                             <canvas class="income_chart" id="monthly-income-chart"></canvas>
                         </div>
                     </div>
                 </div>
                 
                 <!--===== Top Categoreis List =====-->
-                <div class="db_card flex-grow-1 card border-0 rounded-3 shadow my-2 mx-2 col-lg-5 col-md-12">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h5 class="card-title text-primary fw-semibold">Expenses</h5>
-                                <h6 class="card-subtitles mb-2 text-muted fw-medium">Top 5 Spending Categories</h6>
-                            </div>
-                            <div class="expense-btn-div col-md-6 d-flex justify-content-end align-items-start">
-                                <a class="btnViewMore" href="#">More...</a>
+                <div id="category-div" class="rounded-3 border-1 m-2 col-lg-5 col-md-12">
+                    <div class="card h-100">
+                        {# Card header #}
+                        <div class="card-header border-bottom-0 py-3">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h5 class="card-title text-primary fw-semibold">Total Expenses</h5>
+                                    <h6 class="card-subtitles text-muted fw-medium mb-0">By Category</h6>
+                                </div>
                             </div>
                         </div>
-                        <div>
-                            <div class="list-group">
+
+                        {# Main card-body #}
+                        <div class="card-body p-0 scrollable-list-container">
+                            <ul class="list-group list-group-flush border-0">
                                 {% for category in categories %}
-                                <div class="list-group-item d-flex justify-content-between align-items-center rounded-3 mb-2">
+                                <li class="list-group-item d-flex justify-content-between align-items-center py-3 px-3 expense-list-item">
                                     <div class="d-flex align-items-center">
-                                        {% if category.total_amount < 0 %}
-                                        <span class="category-icon bg-danger rounded-1 px-1 py-0 me-3">
-                                            <i class="bi bi-caret-down"></i>
+                                        <span class="expense-icon-wrapper me-3">
+                                            {% if category.total_amount < 0 %}
+                                            <i class="bi bi-caret-down-fill text-danger fs-5"></i>
+                                            {% else %}
+                                            <i class="bi bi-caret-up-fill text-success fs-5"></i>
+                                            {% endif %}
                                         </span>
-                                        {% else %}
-                                        <span class="category-icon d-flex bg-success rounded-1 me-2">
-                                            <i class="bi bi-caret-up"></i>
-                                        </span>
-                                        {% endif %}
-                                        <div>
-                                            <h6 class="mb-0">{{ category.name }}</h6>
-                                        </div>
+                                        <span class="fw-medium text-dark">{{ category.name }}</span> {# Use category.name here #}
                                     </div>
                                     <div class="d-flex align-items-center">
                                         {% if category.total_amount < 0 %}
-                                        <span class="text-danger fw-bold">$ {{ category.total_amount|floatformat:0 }}</span>
+                                        <span class="fw-bold text-danger me-2">$ {{ category.total_amount|floatformat:0 }}</span>
                                         {% else %}
-                                        <span class="text-success fw-bold">$ {{ category.total_amount|floatformat:0 }}</span>
+                                        <span class="fw-bold text-success me-2">$ {{ category.total_amount|floatformat:0 }}</span>
                                         {% endif %}
-                                        <button class="btn btn-sm text-muted ms-2 p-0">
+                                        <button class="btn btn-sm btn-link text-muted p-0">
                                             <i class="bi bi-three-dots-vertical"></i>
                                         </button>
                                     </div>
-                                </div>
+                                </li>
                                 {% endfor %}
-                            </div>
+                            </ul>
                         </div>
                     </div>
                 </div>
-            </div>
 
             <!--===== Expense Charts =====-->
-            <div class="d-flex flex-wrap my-2">
-            <!--===== Monthly Bar Chart =====-->
-            <div class="card-body db_card card border-0 rounded-3 shadow mx-2 col-lg-6 col-md-12 col-sm-12">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h5 class="card-title text-primary fw-semibold">Monthly Expense</h5>
-                        <h6 class="card-subtitles mb-2 text-muted fw-medium">By Category</h6>
+                <!--===== Monthly Bar Chart =====-->
+                <div class="db_card card border-1 rounded-3 m-2 col-12">
+                    <div class="d-flex card-header border-bottom-0 py-3">
+                        <div class="col-auto">
+                            <h5 class="card-title text-primary fw-semibold">Monthly Expense</h5>
+                            <h6 class="card-subtitles mb-2 text-muted fw-medium">By Category</h6>
+                        </div>
+                        <div class="col-auto d-flex ms-auto align-items-end">
+                            <select id="month-selector" class="form-select form-select-sm" aria-label="monthly expense month selector">
+                                {% comment %} <option selected>Select Month</option> {% endcomment %}
+                                {% for month in months %}
+                                <option value="{{ month }}">{{ month }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
                     </div>
-                    <div class="col d-flex justify-content-end align-items-center">
-                        <select id="month-selector" class="form-select form-select-sm" aria-label="monthly expense month selector">
-                            {% comment %} <option selected>Select Month</option> {% endcomment %}
-                            {% for month in months %}
-                            <option value="{{ month }}">{{ month }}</option>
-                            {% endfor %}
-                        </select>
+                    <div>
+                        <canvas id="expense-by-month-chart"></canvas>
                     </div>
                 </div>
-                <div>
-                    <canvas id="expense-by-month-chart"></canvas>
-                </div>
-            </div>
-            
-            <!--===== Donut Chart =====-->
-                <div class="db_card card border-0 rounded-3 shadow mx-2 col-lg-4 col-md-8 col-sm-12">
+                
+                <!--===== Donut Chart =====-->
+                {% comment %} <div class="db_card card border-0 rounded-3 m-1 col-lg-4 col-md-12 col-sm-12">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
@@ -141,9 +140,8 @@
                             <canvas id="total-expense-chart"></canvas>
                         </div>
                     </div>
-                </div>
-        </div>
-        
+                </div> {% endcomment %}
+            </div>
         </div>
 
     {% else %}
