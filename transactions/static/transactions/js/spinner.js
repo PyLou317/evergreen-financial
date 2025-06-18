@@ -1,26 +1,28 @@
 'use_strict';
 
-const pageData = document.querySelector('[transaction-row-container]')
 
 let spinnerTimeout;
 
 export function showSpinner() {
+    const pageData = document.querySelector('.page-content')
     const spinner = document.querySelector('.loader-div');
     if (spinner) {
         console.log('spinner loaded');
         spinner.style.display = 'flex';
+        pageData.style.display = 'none';
     }
 }
 
 
 export function hideSpinner() {
+    const pageData = document.querySelector('.page-content')
     const spinner = document.querySelector('.loader-div');
     setTimeout(() => {
         if (spinner) {
             spinner.style.display = 'none';
         }
         if (pageData) {
-            pageData.style.display = 'relative';
+            pageData.style.display = 'block';
         }
     }, 1000);
 }

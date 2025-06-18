@@ -6,12 +6,13 @@ import { getCategories } from './category_filters.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const apiUrl = '/transactions/transactions_api/';
+  const pageData = document.querySelector('.page-content');
   const tableContent = document.querySelector('[transaction-row-container]');
   const previousPageBtn = document.querySelector('.previous-page a.previousUrl');
   const nextPageBtn = document.querySelector('.next-page a.nextUrl');
   const searchInput = document.querySelector('[transaction-search-bar]');
 
-  tableContent.classList.add('visually-hidden');
+  showSpinner();
 
   // Debounce function (from lodash)
   function debounce(func, delay) {
@@ -31,10 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
       hideSpinner();
       renderStatsBar(data.stats);
       renderHTML(data.results);
-
-      if (renderHTML) {
-        tableContent.classList.remove('visually-hidden');
-      }
       setupPagination(data, main);
 
       const categoryFilters = document.querySelectorAll('.category-filter-badge');
@@ -44,33 +41,32 @@ document.addEventListener('DOMContentLoaded', () => {
         button.addEventListener('click', async () => {
           const categoryName = button.textContent;
           const filterBtn = document.querySelector('.filter-badge');
-          const gradientColor = getComputedStyle(filterBtn).getPropertyValue('--gradient-color');
+          const btnColor = getComputedStyle(filterBtn).getPropertyValue('--accent-color');
 
           categoryFilters.forEach((btn) => {
-              btn.style.backgroundColor = '';
-              btn.style.backgroundImage = '';
-            });
-            button.style.backgroundImage = gradientColor;
-            
-            const params = new URLSearchParams();
-            params.append('category', categoryName);
-            const filterUrl = `${apiUrl}?${params.toString()}`;
+            btn.style.backgroundColor = '';
+            btn.style.backgroundImage = '';
+          });
+          button.style.backgroundImage = btnColor;
 
-            clearFilterBtn.classList.remove('hidden');
-            filterBtn.classList.add('hidden');
-            
-            
-            try {
-                const filterData = await fetchData(filterUrl);
-                if (clearFilterBtn) {
-                    clearFilterBtn.addEventListener('click', () => {
-                        main();
-                        categoryFilters.forEach((btn) => {
-                            btn.style.backgroundColor = '';
-                            btn.style.backgroundImage = '';
-                        });
-                        clearFilterBtn.classList.add('hidden');
-                        filterBtn.classList.remove('hidden');
+          const params = new URLSearchParams();
+          params.append('category', categoryName);
+          const filterUrl = `${apiUrl}?${params.toString()}`;
+
+          clearFilterBtn.classList.remove('hidden');
+          filterBtn.classList.add('hidden');
+
+          try {
+            const filterData = await fetchData(filterUrl);
+            if (clearFilterBtn) {
+              clearFilterBtn.addEventListener('click', () => {
+                main();
+                categoryFilters.forEach((btn) => {
+                  btn.style.backgroundColor = '';
+                  btn.style.backgroundImage = '';
+                });
+                clearFilterBtn.classList.add('hidden');
+                filterBtn.classList.remove('hidden');
               });
             }
             renderHTML(filterData.results);
