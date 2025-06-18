@@ -1,4 +1,7 @@
-/* -----===== Transaction List API Table =====----- */
+.page-content {
+    display: none;
+}
+
 .transaction-search-field {
   background-image: var(--search-icon-url);
   background-repeat: no-repeat;
@@ -9,7 +12,7 @@
 }
 
 .filter-dropdown-menu {
-  max-height: 300px;
+  max-height: 200px;
   overflow-y: scroll;
   scroll-behavior: smooth;
   cursor: pointer;
@@ -26,7 +29,6 @@
 
 .filter-badge {
   background-image: var(--gradient-color);
-  border: none !important;
   border-radius: 30px;
   color: white;
   padding: 3px 8px;
@@ -37,7 +39,11 @@
 }
 
 .filter-badge:hover {
-  background-image: linear-gradient(to right, #ff8c69, #ff6a4a, #ff5733);
+  background-image: linear-gradient(to right, #64a1d4, #82bbe6);
+}
+
+.clearFilterDiv {
+  margin-top: 5px;
 }
 
 .clearFilterBtn {
@@ -45,16 +51,11 @@
   border: none !important;
   border-radius: 30px;
   color: white;
-  padding: 8px 15px;
+  padding: 3px 8px;
   text-align: center;
   text-decoration: none;
   font-size: 12px;
   cursor: pointer;
-}
-
-.clearFilterBtn:hover {
-    background-color: grey;
-    color: white;
 }
 
 #transaction-table {
@@ -64,26 +65,19 @@
 .transaction-description,
 .transaction-date,
 .transaction-action {
-  white-space: nowrap; /* Prevent text from wrapping */
-  overflow: hidden; /* Hide overflowing content */
-  text-overflow: ellipsis; /* Display an ellipsis (...) */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   max-width: 100%;
 }
 
 .mobile-date {
-  display: none; /* Hide the mobile date by default */
+  display: none;
 }
 
 .container-transaction-page {
   height: 100vh;
   margin-bottom: 100px;
-}
-
-.page-item.disabled .page-link {
-  pointer-events: none; /* Prevent clicks */
-  opacity: 0.5; /* Optional: visually indicate disabled state */
-  background-color: #e9ecef; /* optional. */
-  border-color: #dee2e6; /* optional. */
 }
 
 @media only screen and (max-width: 767px) {
@@ -108,17 +102,42 @@
     max-width: 100px;
   }
 
-  .mobile-date {
-    display: block;
-  }
-
-  .desktop-date {
-    display: block;
-  }
-
   .pagination-btns a,
   .pagination-btns span {
     font-size: 0.7rem;
+  }
+
+  .hide-description-col {
+    display: none;
+  }
+
+  .table tbody tr {
+    position: relative;
+  }
+
+  .category-col {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100px;
+  }
+
+  .category-col:hover {
+    z-index: 100;
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+    transform: translate(-100%, -50%);
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    overflow: visible; /* Make sure content is not clipped on hover */
+    text-overflow: clip;
+    max-width: 100%;
+  }
+
+  .date-col {
+    max-width: fit-content;
   }
 }
 
@@ -126,17 +145,10 @@
   .desktop-date {
     display: inline;
   }
-  .mobile-date {
-    display: none;
-  }
 }
 
 .transactions-row {
   align-items: center;
-}
-
-.pagination-div {
-  display: none;
 }
 
 .hidden {
@@ -145,7 +157,7 @@
 
 .badge.category-badge {
   font-size: 0.9em;
-  background-color: var(--primary-color);
+  background-color: black;
 }
 
 .filter-badge {
@@ -158,9 +170,31 @@
 }
 
 .category-filter-badge:hover {
-  font-size: 1.1rem;
+  font-size: 0.8rem;
 }
 
 .show-all-badge:hover {
   font-size: 0.8rem;
+}
+
+/* ----- Pagination ----- */
+.pagination-div {
+  display: none;
+}
+
+.pagination .previous-page .page-link {
+  color: black;
+}
+
+.pagination .current-page {
+  background-color: black;
+  border-color: black;
+}
+
+.pagination .next-page .page-link {
+  color: black;
+}
+
+.pagination::focus {
+  box-shadow: 0 0 0 0.25rem rgba(253, 13, 149, 0.25) !important;
 }

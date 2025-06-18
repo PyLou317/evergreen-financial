@@ -52,7 +52,7 @@
                     aria-haspopup="true"
                     aria-expanded="false"
                     >
-                    <i class="bi bi-filter"></i> Category Filter
+                    Category Filter
                 </a>
                 <div class="dropdown-menu filter-dropdown-menu" aria-labelledby="triggerId">
                 </div>
@@ -64,13 +64,18 @@
         </div>
         </div> 
         
-        <div id="transaction-table" class="table-responsive mt-3">
+        {% comment %}------ Loader ------{% endcomment %}
+        <div class="loader-div">
+            <div class="loader"></div>
+        </div>
+
+        <div id="transaction-table" class="page-content table-responsive mt-3">
             <table class="table table-hover" style="width: 100%;">
                 <thead>
                     <tr>
-                        <th scope="col">Date</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Category</th>
+                        <th scope="col" class="date-col">Date</th>
+                        <th scope="col" class="hide-description-col">Description</th>
+                        <th scope="col" class="">Category</th>
                         <th scope="col">Amount</th>
                         <th scope="col">Action</th>
                     </tr>
@@ -78,10 +83,6 @@
                 <tbody class="table-group-divider table align-middle" transaction-row-container></tbody>
             </table>
 
-            {% comment %}------ Loader ------{% endcomment %}
-            <div class="loader-div">
-                <div class="loader"></div>
-            </div>
         </div> 
 
         
@@ -106,7 +107,6 @@
             </nav>
         </div>
 
-        </div>
     </div>
 
     
@@ -118,16 +118,16 @@
     {% comment %}------ Transaction List Table ------{% endcomment %}
     <template transaction-row-template>
         <tr>
-            <td class="transaction-date">
+            <td class="transaction-date date-col">
                 <span class="desktop-date" transaction-desktop-date></span> 
                 <span class="mobile-date" transaction-mobile-date></span>
             </td>
-            <td class="transaction-description" transaction-description></td>
-            <td><span id="category-pill" class="badge badge-pill category-badge text-light" transaction-category></span></td>
+            <td class="transaction-description hide-description-col" transaction-description></td>
+            <td class="transaction-category"><span id="category-pill" class="badge badge-pill category-badge text-light category-col" transaction-category></span></td>
             <td transaction-amount></td>
             <td class="transaction-action">
                 <a href="#" data-edit-url="{% url 'transactions:edit_transaction' pk='0' %}">
-                    <i class="bi bi-pencil-square text-success edit-link"></i>
+                    <i class="bi bi-pencil-square edit-link"></i>
                 </a> |
                 <a href="#" data-delete-url="{% url 'transactions:delete_transaction' pk='0' %}">
                     <i class="bi bi-trash3-fill text-secondary delete-link"></i>
