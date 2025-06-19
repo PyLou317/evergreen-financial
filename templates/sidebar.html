@@ -1,7 +1,7 @@
 {% comment %} Has inline style for menu width, wouldn't work when linked with ID {% endcomment %}
 <div class="offcanvas offcanvas-start offcanvas-dark bg-dark side-menu-mobile" tabindex="-1" id="offcanvas" data-bs-keyboard="false" data-bs-backdrop="false">
     <div class="offcanvas-header">
-        <h6 class="offcanvas-title d-none d-sm-block text-light fs-5 pe-2" id="offcanvas">Evergreen Financial</h6>
+        <p class="offcanvas-title d-none d-sm-block text-light fs-4 pe-2" id="offcanvas">Evergreen Financial</p>
         <button  type="button" class="btn-close text-reset btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div id="side_bar_nav" class="offcanvas-body d-flex flex-column ps-0">
@@ -13,14 +13,6 @@
             <li class="nav-item">
                 <a href="{% url 'transactions:transactions' %}" class="nav-link text-light">
                     <i class="bi bi-list"></i><span class="ms-1 d-none d-sm-inline"> Transactions</span></a>
-            </li>
-            <li class="nav-item">
-                <a href={% url 'category:categories' %} class="nav-link text-light">
-                    <i class="bi bi-tag"></i><span class="ms-1 d-none d-sm-inline"> Categories</span></a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link text-light">
-                    <i class="bi bi-tag"></i><span class="ms-1 d-none d-sm-inline"> Category Details</span></a>
             </li>
             <li class="nav-item">
                 <a href="{% url 'upload:file_upload' %}" class="nav-link text-light">
