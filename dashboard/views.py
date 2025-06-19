@@ -125,7 +125,7 @@ def category_expenses_json(request):
 def income_total_json(request):
     year = request.GET.get('year')
     if not year:
-        year = 2024
+        year = 2025
         # datetime.today().year
     else:
         year = int(year)
