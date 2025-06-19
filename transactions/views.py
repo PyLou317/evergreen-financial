@@ -89,7 +89,7 @@ class TransactionListAPIView(generics.ListCreateAPIView):
     search_fields = ['description', 'amount', 'date', 'category__name']
     
     def get_queryset(self):
-        queryset = Transaction.objects.filter(owner=self.request.user).exclude(category__name='Income')
+        queryset = Transaction.objects.filter(owner=self.request.user)
         category = self.request.query_params.get('category')
         
         if category:
