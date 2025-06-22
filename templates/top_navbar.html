@@ -1,0 +1,20 @@
+{% load static %}
+
+<nav class="navbar navbar-light fixed-top bg-light border-bottom">
+    <div class="container-fluid">
+        <a class="navbar-brand d-none d-md-block ms-3" href="{% url 'dashboard:dashboard_home' %}">
+            <span class="fw-bold">Evergreen Financial</span>
+        </a>
+        {# You can add other navbar content here, like user info or a search bar #}
+        <div class="ms-auto d-flex align-items-center">
+            <span class="me-3 d-none d-lg-block text-muted">{% now "F j, Y, g:i a" %}</span>
+            {% comment %} <a href="{% url 'user:profile_home' %}" class="btn btn-sm btn-outline-secondary rounded-pill me-2">
+                <i class="bi bi-person-fill"></i> Profile
+            </a> {% endcomment %}
+            <form action="#" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-sm btn-primary rounded-pill">Logout</button>
+            </form>
+        </div>
+    </div>
+</nav>
