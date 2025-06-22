@@ -2,6 +2,33 @@
     display: none;
 }
 
+.container-transaction-page h2 {
+    font-weight: 600;
+}
+
+.stat-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    min-width: 200px; /* Adjust min-width if cards become too narrow on smaller screens */
+}
+
+.stat-card:hover {
+    transform: translateY(-3px); /* Subtle lift on hover */
+    box-shadow: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.1) !important; /* Slightly stronger shadow */
+}
+
+.stat-card p {
+    font-size: 0.85rem; /* Slightly larger for readability */
+    letter-spacing: 0.04em; /* Add some spacing for uppercase text */
+    text-transform: uppercase; /* Ensure it's uppercase if not already */
+    color: var(--bs-gray-600, #6c757d); /* A slightly darker muted color */
+}
+
+.stat-card h4 {
+    font-size: 1.8rem; /* Make the numbers significantly larger */
+    line-height: 1.2; /* Adjust line height if numbers are too close to labels */
+    color: var(--bs-dark); /* Darker color for prominence */
+}
+
 .transaction-search-field {
   background-image: var(--search-icon-url);
   background-repeat: no-repeat;
@@ -12,7 +39,7 @@
 }
 
 .filter-dropdown-menu {
-  max-height: 200px;
+  max-height: 300px;
   overflow-y: scroll;
   scroll-behavior: smooth;
   cursor: pointer;
@@ -42,19 +69,15 @@
   background-image: linear-gradient(to right, #64a1d4, #82bbe6);
 }
 
-.clearFilterDiv {
-  margin-top: 5px;
-}
-
-.clearFilterBtn {
+.clear-filter-btn{
   background-color: var(--body-color);
   border: none !important;
   border-radius: 30px;
   color: white;
-  padding: 3px 8px;
+  padding: 7px 0;
   text-align: center;
   text-decoration: none;
-  font-size: 12px;
+  font-size: 14px;
   cursor: pointer;
 }
 
@@ -76,7 +99,6 @@
 }
 
 .container-transaction-page {
-  height: 100vh;
   margin-bottom: 100px;
 }
 
