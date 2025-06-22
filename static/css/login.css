@@ -1,0 +1,36 @@
+#login-header {
+    padding-top: 10%;
+}
+
+#sub-header {
+    font-size: 1.25rem;
+    color: var(--secondary-color);
+}
+
+#login-row {
+    height: 100vh;
+}
+
+#logo-container {
+    color: white;
+}
+
+#logo {
+    max-width: 200px;
+}
+
+#login-btn {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--white);
+    width: 100%;
+}
+
+#login-btn:hover {
+    background-color: rgb(41, 212, 212);
+    border-color: rgb(41, 212, 212);
+}
+
+#login-google-btn {
+    width: 100%;
+}
