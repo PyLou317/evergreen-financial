@@ -67,7 +67,7 @@ class TransactionUpdateView(LoginRequiredMixin, UpdateView):
         return form
     
     def get_success_url(self):
-        return reverse_lazy('finance_tracker:transactions')
+        return reverse_lazy('transactions:transactions')
     
     
     
