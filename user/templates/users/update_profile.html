@@ -1,0 +1,24 @@
+{% extends 'finance_tracker/base.html' %} 
+{% load crispy_forms_tags %} 
+{% crispy profile_update_form %}
+{% load static %} 
+
+{% block title %}Update User Profile{%endblock %} 
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-xl-6">
+            <div class="card shadow p-4">
+                <div class="card-header bg-success text-white text-center">
+                    <i class="bi bi-box-arrow-in-right me-2"></i> Update Profile
+                </div>
+                <div class="card-body">
+                    {% csrf_token %}
+                    {% crispy form %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
