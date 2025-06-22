@@ -27,6 +27,7 @@ urlpatterns = [
     path('dashboard/', include("dashboard.urls")),
     path('category/', include('category.urls')),
     path('upload/', include('upload.urls')),
+    path('user/', include('user.urls')),
     path('accounts/', include('allauth.urls')),
     path('api-auth/', include('rest_framework.urls')),
     path('admin/', admin.site.urls),
