@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
       setupPagination(data, main);
 
       const categoryFilters = document.querySelectorAll('.category-filter-badge');
-      const clearFilterBtn = document.querySelector('.clearFilterBtn');
+      const clearFilterBtn = document.querySelector('.clear-filter-btn');
 
       categoryFilters.forEach((button) => {
         button.addEventListener('click', async () => {
