@@ -1,3 +1,7 @@
+.upload-container {
+    padding-top: 4rem;
+}
+
 #submit-id-submit {
   background-color: var(--accent-color);
   border-color: var(--accent-color);
