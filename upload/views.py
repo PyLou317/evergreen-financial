@@ -116,7 +116,7 @@ def upload_statement(request):
             Transaction.objects.bulk_create(transactions_to_create) # Bulk create transactions for efficiency
             print(f"{len(transactions_to_create)} transactions saved successfully.")
 
-            return redirect("/upload/upload")
+            return redirect("upload:file_upload")
     else:
         form = UploadFileForm()
     return render(request, 'upload/upload.html', {'upload_form': form})
