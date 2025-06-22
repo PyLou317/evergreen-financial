@@ -6,32 +6,43 @@
 {% endblock extra_css %}
 
 {% block content %}
-  <div class="container container-transaction-page mx-auto px-sm-0">
-    <div class="m-3 ms-0">
-      <h2 class="justin-content-center">Transactions</h2>
-    </div>
-
-        {% comment %}------ Header ------{% endcomment %}
-        <div class="row d-flex mt-4">
-            {% comment %}------ Stats Bar ------{% endcomment %}
-            <div class="stats-bar hstack col-lg-9 col-sm-12 justify-content-center align-self-center mx-auto" style="height: auto;">
-                <div class="flex-grow-1 py-2 px-4">
-                    <p class="fw-lighter">Date Range</p>
-                    <h4 id="date-range"></h4>
-                </div> 
-                <div class="vr"></div>
-                <div class="flex-grow-1 py-2 px-4">
-                    <p class="fw-lighter">Transactions</p>
-                    <h4 id="transaction-count"></h4>
-                </div> 
-                <div class="vr"></div>
-                        <div class="flex-grow-1 py-2 px-4">
-                            <p class="fw-lighter">Total</p>
-                            <h4 id="stats-total"></h4>
-                        </div>
-            </div>
+<div>
+    <div class="container min-vh-100 mb-5">
+        <div class="m-3 ms-0">
+            <h2 class="justin-content-center">Transactions</h2>
         </div>
-
+        
+        {% comment %}------ Stats Bar ------{% endcomment %}
+        <div class="row flex-wrap justify-content-center">
+            <div class="col-lg-4 col-md-12 my-3">
+                <div class="card stat-card shadow-sm border-0 rounded-4">
+                    <div class="card-body p-4 d-flex flex-column align-items-center justify-content-center">
+                        <p class="fw-light text-muted text-uppercase mb-1">Transactions</p>
+                        <h5 id="transaction-count" class="fw-bold mb-0"></h5>
+                    </div>
+                </div> 
+            </div> 
+            
+            <div class="col-lg-4 col-md-12 my-3">
+                <div class="card stat-card shadow-sm border-0 rounded-4">
+                    <div class="card-body p-4 d-flex flex-column align-items-center justify-content-center">
+                        <p class="fw-light text-muted text-uppercase mb-1">Date Range</p>
+                        <h6 id="date-range" class="fw-bold mb-0"></h6>
+                    </div>
+                </div> 
+            </div>
+            
+            
+            <div class="col-lg-4 col-md-12 my-3">
+                <div class="card stat-card shadow-sm border-0 rounded-4">
+                    <div class="card-body p-4 d-flex flex-column align-items-center justify-content-center">
+                        <p class="fw-light text-muted text-uppercase mb-1">Total</p>
+                        <h5 id="stats-total" class="fw-bold mb-0"></h5>
+                    </div>
+                </div>
+            </div> 
+        </div>
+        
         <div class="row justify-content-between mt-5">
             {% comment %}------ Search Field ------{% endcomment %}
             <div class="col-lg-3 col-md-6 col-sm-12 align-self-end">
@@ -42,7 +53,7 @@
                 </form>
             </div>
             {% comment %}------ Category Filter Menu ------{% endcomment %}
-            <div class="col-auto">
+            <div class="col-lg-2 col-md-3 col-sm-12">
                 <div class="dropdown filter-badge open">
                     <a
                     class="btn btn-sm text-light dropdown-toggle"
@@ -54,89 +65,89 @@
                     >
                     Category Filter
                 </a>
-                <div class="dropdown-menu filter-dropdown-menu" aria-labelledby="triggerId">
-                </div>
+                <div class="dropdown-menu filter-dropdown-menu" aria-labelledby="triggerId"></div>
             </div>
-
-            <div class="col-auto ms-auto clearFilterDiv">
-                <span class="btn btn-sm clearFilterBtn hidden"><i class="bi bi-x-lg"></i> Clear Filter</span>
+            
+            <div class="col">
+                <span class="btn btn-sm clear-filter-btn hidden w-100"><i class="bi bi-x-lg"></i> Clear Filter</span>
             </div>
         </div>
-        </div> 
-        
-        {% comment %}------ Loader ------{% endcomment %}
-        <div class="loader-div">
-            <div class="loader"></div>
-        </div>
-
-        <div id="transaction-table" class="page-content table-responsive mt-3">
-            <table class="table table-hover" style="width: 100%;">
-                <thead>
-                    <tr>
-                        <th scope="col" class="date-col">Date</th>
-                        <th scope="col" class="hide-description-col">Description</th>
-                        <th scope="col" class="">Category</th>
-                        <th scope="col">Amount</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody class="table-group-divider table align-middle" transaction-row-container></tbody>
-            </table>
-
-        </div> 
-
-        
-        {% comment %}------ Pagination ------{% endcomment %}
-        <div class="text-center pagination-div">
-            <nav aria-label="Page navigation">
-                <ul class="pagination justify-content-center">
-                    <li class="page-item previous-page disabled">
-                        <a class="page-link previousUrl" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo; Previous</span>
-                        </a>
-                    </li>
-                    <li class="page-item active " aria-current="page">
-                        <a class="page-link current-page" href="#"></a>
-                    </li>
-                    <li class="page-item next-page disabled">
-                        <a class="page-link nextUrl" href="#" aria-label="Next">
-                            <span aria-hidden="true">Next &raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-
-    </div>
-
+    </div> 
     
-    {% comment %}------ Filter Btn ------{% endcomment %}
-    <template filterButtonTemplate>
-        <a class="dropdown-item category-filter-badge"></a>
-    </template>
+    {% comment %}------ Loader ------{% endcomment %}
+    <div class="loader-div">
+        <div class="loader"></div>
+    </div>
+    
+    <div id="transaction-table" class="page-content table-responsive mt-3">
+        <table class="table table-hover" style="width: 100%;">
+            <thead>
+                <tr>
+                    <th scope="col" class="date-col">Date</th>
+                    <th scope="col" class="hide-description-col">Description</th>
+                    <th scope="col" class="">Category</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider table align-middle" transaction-row-container></tbody>
+        </table>
+        
+    </div> 
+    
+    
+    {% comment %}------ Pagination ------{% endcomment %}
+    <div class="text-center pagination-div">
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                <li class="page-item previous-page disabled">
+                    <a class="page-link previousUrl" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo; Previous</span>
+                    </a>
+                </li>
+                <li class="page-item active " aria-current="page">
+                    <a class="page-link current-page" href="#"></a>
+                </li>
+                <li class="page-item next-page disabled">
+                    <a class="page-link nextUrl" href="#" aria-label="Next">
+                        <span aria-hidden="true">Next &raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    
+</div>
 
-    {% comment %}------ Transaction List Table ------{% endcomment %}
-    <template transaction-row-template>
-        <tr>
-            <td class="transaction-date date-col">
-                <span class="desktop-date" transaction-desktop-date></span> 
-                <span class="mobile-date" transaction-mobile-date></span>
-            </td>
-            <td class="transaction-description hide-description-col" transaction-description></td>
-            <td class="transaction-category"><span id="category-pill" class="badge badge-pill category-badge text-light category-col" transaction-category></span></td>
-            <td transaction-amount></td>
-            <td class="transaction-action">
-                <a href="#" data-edit-url="{% url 'transactions:edit_transaction' pk='0' %}">
-                    <i class="bi bi-pencil-square edit-link"></i>
-                </a> |
-                <a href="#" data-delete-url="{% url 'transactions:delete_transaction' pk='0' %}">
-                    <i class="bi bi-trash3-fill text-secondary delete-link"></i>
-                </a>
-            </td>
-        </tr>
-    </template>
+
+
+{% comment %}------ Filter Btn ------{% endcomment %}
+<template filterButtonTemplate>
+    <a class="dropdown-item category-filter-badge"></a>
+</template>
+
+{% comment %}------ Transaction List Table ------{% endcomment %}
+<template transaction-row-template>
+    <tr>
+        <td class="transaction-date date-col">
+            <span class="desktop-date" transaction-desktop-date></span> 
+            <span class="mobile-date" transaction-mobile-date></span>
+        </td>
+        <td class="transaction-description hide-description-col" transaction-description></td>
+        <td class="transaction-category"><span id="category-pill" class="badge badge-pill category-badge text-light category-col" transaction-category></span></td>
+        <td transaction-amount></td>
+        <td class="transaction-action">
+            <a href="#" data-edit-url="{% url 'transactions:edit_transaction' pk='0' %}">
+                <i class="bi bi-pencil-square edit-link"></i>
+            </a> |
+            <a href="#" data-delete-url="{% url 'transactions:delete_transaction' pk='0' %}">
+                <i class="bi bi-trash3-fill text-secondary delete-link"></i>
+            </a>
+        </td>
+    </tr>
+</template>
 {% endblock %}
 
 {% block extra_js %}
-  <script type="module" src="{% static 'transactions/js/main.js' %}"></script>
+<script type="module" src="{% static 'transactions/js/main.js' %}"></script>
 {% endblock %}
