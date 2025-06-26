@@ -4,7 +4,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     const fileInput = document.getElementById('id_file');
     const fileInputErrorDiv = document.getElementById('fileTypeError');
-    console.log('Script Loaded')
 
     fileInput.addEventListener('change', function () {
         const file = this.files[0];
@@ -24,6 +23,13 @@ document.addEventListener('DOMContentLoaded', function () {
             fileInputErrorDiv.classList.add('d-none');
         }
     });
-
+    
+    // Dropzone.discover();
+    Dropzone.options.uploadDiv = {
+        maxFiles: 10,
+        maxFilesize: 2,
+        acceptedFiles: '.csv',
+    };
+    
 });
 

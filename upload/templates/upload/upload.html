@@ -6,39 +6,53 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'upload/css/main.css' %}">
+<link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
 {% endblock extra_css %}
 
 
 {% block content %}
     {% comment %}------------ Upload File ------------{% endcomment %}
     {% if user.is_authenticated %}
-      <div id="uploadPage-div" class="container d-flex justify-content-center align-items-center text-center wrapper">
-        <div id="upload-container" class="container shadow">
-          <h1 id="upload-file-header">Upload a file</h1>
-          <div class="upload-icon-div">
-            <div class="border-container">
-              <div class="icons bi-4x d-flex justify-content-center ms-4 mb-2 fa-4x">
-                <i class="bi bi-filetype-csv"></i>
-                <i class="bi bi-filetype-csv"></i>
-                <i class="bi bi-filetype-csv"></i>
-              </div>
-            </div>
-          </div>
-          <div>
-            {% csrf_token %}
-            {% crispy upload_form %}
-            <div id="fileTypeError" class="text-danger d-none"></div>
-          </div>
+    {% firstof user.first_name user as name %}
+    <div class="container min-vh-100">
+        <div class="row m-3">
+            <h2 id="upload-file-header">Upload Transactions</h2>
+            <h5 class="fw-bold text-muted">{{ name|capfirst }}, upload your transactions from our partners</h5>
         </div>
-      </div>
+        
+        <div class="container d-flex justify-content-center mt-5">
+            <div class="row d-flex align-items-center">
+                <div class="col d-flex justify-content-center mx-3">
+                    <img id="bank-logo" src="{% static "upload/images/scotiabank-logo.png" %}" alt="Scotia Bank Logo">
+                </div>
+                <div class="col d-flex justify-content-center mx-3">
+                    <img id="bank-logo" src="{% static "upload/images/cibc-logo.png" %}" alt="Scotia Bank Logo">
+                </div>
+            </div>
+        </div>
+
+        <div id="upload-page-div" class="container d-flex justify-content-center align-items-center text-center wrapper">
+            <div id="upload-container" class="container shadow">
+                <div>
+                    <form action="/" method="POST" class="dropzone dz" id="upload-div">
+                        {% csrf_token %}
+                    </form>
+                    {% crispy upload_form %}
+                        <div id="fileTypeError" class="text-danger d-none"></div>
+                </div>
+            </div>
+        </div>
 
       {% comment %}------------ Login Container------------{% endcomment %}
-    {% else %}
-      {% include 'users/components/login_container.html' %}
-    {% endif %}
-  </div>
-{% endblock %}
+        {% else %}
+        {% include 'users/components/login_container.html' %}
+        {% endif %}
+    </div>
+    {% endblock %}
 
 {% block extra_js %}
-  <script src="{% static 'upload/js/upload.js' %}"></script>
+    <script src="{% static 'upload/js/upload.js' %}"></script>
+    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+
+
 {% endblock %}

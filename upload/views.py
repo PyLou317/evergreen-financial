@@ -43,6 +43,7 @@ from rest_framework.permissions import IsAuthenticated
 @login_required
 def upload_statement(request):
     if request.method == 'POST':
+        print(request.FILES)
         form = UploadFileForm(request.POST, request.FILES)
 
         if form.is_valid():
