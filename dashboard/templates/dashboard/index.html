@@ -9,11 +9,11 @@
 {% block content %}
   <div>
     {% if expense_summary.total_expense_amount or income_summary.total_income_amount %}
-        <div class="container min-vh-100 mb-5">
+        <div class="container min-vh-100">
             <div class="d-flex row m-2 mb-4">
                 {% firstof user.first_name user as name %}
                 <div class="col mt-3">
-                    <h2 class="dashboard-greeting-msg">Good {{ now|greeting }}, {{ name }}!</h2>   
+                    <h2 class="dashboard-greeting-msg fw-bold">Good {{ now|greeting }}, {{ name }}!</h2>   
                     <small>Today is {{ today|date:"M d, Y" }} and the time is {{ today|date:"P" }}</small>
                 </div>
             </div>
@@ -117,7 +117,7 @@
                                 <h5 class="card-title text-primary fw-semibold">Monthly Expense</h5>
                                 <h6 class="card-subtitles mb-2 text-muted fw-medium">By Category</h6>
                             </div>
-                            <div class="col-auto d-flex ms-auto align-items-end">
+                            <div class="col-auto d-flex ms-auto align-items-start">
                                 <select id="month-selector" class="form-select form-select-sm" aria-label="monthly expense month selector">
                                     {% comment %} <option selected>Select Month</option> {% endcomment %}
                                     {% for month in months %}
