@@ -15,8 +15,11 @@
   --sidebar-width-collapsed: 80px;
 }
 
-.sidebar-toggler:hover {
-  background-color: var(--bs-light);
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 body {
@@ -24,11 +27,27 @@ body {
   overflow-x: hidden;
 }
 
-.main-content {
-    width: 100%;
-    margin-left: var(--sidebar-width);
-    background-color: #f8f9fa;
+.sidebar-toggler:hover {
+  background-color: var(--bs-light);
+}
+
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
     min-height: 100vh;
+}
+
+.content-area {
+    display: flex; /* Makes sidebar and main-content sit side-by-side */
+    flex-grow: 1; /* Allows content-area to take up available vertical space */
+}
+
+.main-content {
+    flex-grow: 1;
+    /* width: 100%; */
+    /* margin-left: var(--sidebar-width); */
+    background-color: #f8f9fa;
+    /* min-height: 100vh; */
     padding: 20px;
     transition: all 0.3s ease;
 }
@@ -194,4 +213,8 @@ body {
   .dashboard-img {
     max-width: 1200px; /* Cap the image width for very large screens */
   }
+}
+
+footer {
+    z-index: 1035;
 }
