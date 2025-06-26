@@ -1,4 +1,4 @@
-.upload-container {
+#upload-container {
     padding-top: 4rem;
 }
 
@@ -16,36 +16,6 @@
   display: none;
 }
 
-.icons.bi-4x {
-  font-size: 4rem;
-  display: inline-flex;
-  /* To allow horizontal arrangement and transformations */
-}
-
-.icons.bi-4x i.bi-filetype-csv {
-  color: #000000;
-  margin-right: 0.5em;
-  /* Spacing between icons */
-  display: inline-block;
-}
-
-/* Target the first icon for transformation */
-.icons.bi-4x i.bi-filetype-csv:nth-child(1) {
-  transform: scale(0.8) translateY(20%) rotate(-45deg);
-}
-
-/* Target the second icon for transformation */
-.icons.bi-4x i.bi-filetype-csv:nth-child(2) {
-  transform: scale(0.8) translateY(-25%);
-  /* shrink-2 up-4  (scale and vertical move) */
-}
-
-/* Target the third icon for transformation */
-.icons.bi-4x i.bi-filetype-csv:nth-child(3) {
-  transform: scale(0.8) translateY(20%) rotate(45deg);
-  /* shrink-3 down-2 right-6 rotate-45 */
-}
-
 #not_user_upload {
   width: 500px;
   height: 225px;
@@ -54,13 +24,8 @@
 .wrapper {
   margin: auto;
   max-width: 500px;
-  padding-top: 60px;
+  padding-top: 40px;
   text-align: center;
-}
-
-#uploadPage-div {
-  padding-top: 4rem;
-  margin-bottom: 200px;
 }
 
 #upload-container {
@@ -117,4 +82,18 @@
 .icons {
   color: #95afc0;
   opacity: 0.55;
+}
+
+#bank-logo {
+    max-width: 200px;
+}
+
+.dz {
+    border: dashed !important;
+    border-color: #ccc;
+    border-radius: 10px;
+}
+
+.dz:hover {
+    background-color: aliceblue !important;
 }
