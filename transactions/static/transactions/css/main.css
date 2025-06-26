@@ -2,13 +2,14 @@
     display: none;
 }
 
-.container-transaction-page h2 {
+.container-transactions-page h2 {
     font-weight: 600;
 }
 
 .stat-card {
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
     min-width: 200px; /* Adjust min-width if cards become too narrow on smaller screens */
+    min-height: 120px !important;
 }
 
 .stat-card:hover {
@@ -179,7 +180,7 @@
 
 .badge.category-badge {
   font-size: 0.9em;
-  background-color: black;
+  background-color: #879CFF;
 }
 
 .filter-badge {
