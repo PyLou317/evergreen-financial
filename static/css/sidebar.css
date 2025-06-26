@@ -9,13 +9,19 @@
 
 .sidebar {
   width: var(--sidebar-width);
-  height: 100vh !important;
   background: linear-gradient(135deg, #1a1c2e 0%, #16181f 100%);
   transition: all 0.3s ease;
 }
 
 .sidebar.collapsed {
   width: var(--sidebar-width-collapsed);
+}
+
+.sidebar.collapsed {
+    .toggle-btn {
+        left: 65px;
+        transition: all 0.3s ease;
+    }
 }
 
 .hide {
@@ -68,13 +74,9 @@
   }
 }
 
-.collapsed ~ .main-content {
-  margin-left: var(--sidebar-width-collapsed);
-}
-
 .toggle-btn {
   position: absolute;
-  right: -15px;
+  left: 265px;
   top: 20px;
   background: white;
   border-radius: 50%;
@@ -128,8 +130,4 @@
 
 .dropdown-toggle::after {
     display: none !important    ;
-}
-
-.btn-logout {
-    
 }
