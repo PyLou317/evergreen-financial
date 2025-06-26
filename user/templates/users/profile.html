@@ -1,4 +1,4 @@
-{% extends "finance_tracker/base.html" %}
+{% extends "base.html" %}
 {% load static %}
 {% load socialaccount %}
 
@@ -54,7 +54,7 @@
         <div class="card-body">
             <ul class="list-unstyled">
                 <li>
-                    <a href="{% url 'users:update_profile' %}" class="btn btn-outline-secondary btn-sm mb-2">
+                    <a href="{% url 'user:update_profile' %}" class="btn btn-outline-secondary btn-sm mb-2">
                         <i class="bi bi-pencil-square"></i> Edit Profile
                     </a>
                 </li>
