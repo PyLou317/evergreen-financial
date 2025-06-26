@@ -19,8 +19,8 @@ class UploadFileForm(forms.Form):
         self.helper.layout = Layout(
             Row(
                 Column(Field('file'), css_class='form-group col-md-9'),
-                Column(Submit('submit', 'Upload', css_class='btn-secondar'), 
-                       css_class='form-group col-md-3 d-flex align-self-start justify-content-center'),
+                Column(Submit('submit', 'Upload', css_class='btn-secondary'), 
+                       css_class='form-group col-md-3 d-flex align-self-start'),
                 css_class='form-row'
                 ),
     
