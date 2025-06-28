@@ -1,13 +1,18 @@
+/*
+------------------------------------------------------------
+1. CSS Variables
+------------------------------------------------------------
+*/
 :root {
   --font: 'Inter', sans-serif;
   --body-color: #637381;
   --background-color: black;
   --heading-color: #212b36;
-  /* --primary-color: #355E3B; */
-  --primary-color-2: #79d7be;
-  --primary-color: rgb(75, 192, 192);
-  --accent-color: #0056b3;
-  --gradient-color: linear-gradient(to right, #0056b3, #003e82);
+  --primary-color: #212529;
+  --accent-color: #829AFE;
+  --accent-color-hover: #9BB0FF;
+  --gradient-color: linear-gradient(to right, #829AFE, #6579E0);
+  --gradient-color-hover: linear-gradient(to right, #9BB0FF, #7D92EC);
   --white: #ffffff;
   --bs-gray-300: #dee2e6;
   --bs-light: #f8f9fa;
@@ -15,20 +20,23 @@
   --sidebar-width-collapsed: 80px;
 }
 
+/*
+------------------------------------------------------------
+2. Base & Layout Styles
+------------------------------------------------------------
+*/
 
 html, body {
     height: 100%;
     margin: 0;
     padding: 0;
+    font-family: var(--font);
+    color: var(--body-color);
 }
 
 body {
-  background-color: #ffff;
+  background-color: var(--white); 
   overflow-x: hidden;
-}
-
-.sidebar-toggler:hover {
-  background-color: var(--bs-light);
 }
 
 .page-wrapper {
@@ -38,63 +46,86 @@ body {
 }
 
 .content-area {
-    display: flex; /* Makes sidebar and main-content sit side-by-side */
-    flex-grow: 1; /* Allows content-area to take up available vertical space */
+    display: flex;
+    flex-grow: 1; 
 }
 
 .main-content {
     flex-grow: 1;
-    /* width: 100%; */
-    /* margin-left: var(--sidebar-width); */
-    background-color: #f8f9fa;
-    /* min-height: 100vh; */
+    background-color: var(--bs-light); 
     padding: 20px;
     transition: all 0.3s ease;
 }
 
+.primary-text {
+    color: var(--heading-color);
+}
+
+/*
+------------------------------------------------------------
+3. Navigation & Sidebar Styles
+------------------------------------------------------------
+*/
+
+.sidebar-toggler:hover {
+  background-color: var(--bs-light); 
+}
+
+/*
+------------------------------------------------------------
+4. Hero Section Styles
+------------------------------------------------------------
+*/
+
 .hero-section {
-  background-color: #ffffff; /* Plain solid white background for the hero section */
-  position: relative; /* For absolute positioning of elements like the metric box */
-  overflow: hidden; /* Hide anything that goes outside */
+  background-color: var(--white); 
+  position: relative; 
+  overflow: hidden; 
   height: 75vh;
 }
 
 .hero-content {
-  max-width: 900px; /* Constrain content width */
+  max-width: 900px; 
   margin: 0 auto;
 }
 
 .hero-title {
-  font-size: clamp(2.5rem, 6vw, 4.5rem); /* Responsive font size */
-  font-weight: 800; /* Extra bold */
+  font-size: clamp(2.5rem, 6vw, 4.5rem); 
+  font-weight: 800; 
   line-height: 1.1;
-  color: #212529; /* Dark text */
+  color: var(--primary-color); 
 }
 
 .hero-subtitle {
-  font-size: clamp(1rem, 2vw, 1.35rem); /* Responsive font size */
-  color: #6c757d; /* Muted text */
+  font-size: clamp(1rem, 2vw, 1.35rem); 
+  color: #6c757d;
   max-width: 700px;
 }
 
+/*
+------------------------------------------------------------
+5. Button Styles
+------------------------------------------------------------
+*/
+
 .btn-custom-dark {
-  background-color: #212529; /* Dark button background */
-  border-color: #212529;
-  color: white;
-  padding: 0.9rem 2.5rem; /* Custom padding for precise button size */
+  background-color: var(--primary-color); 
+  border-color: var(--primary-color);
+  color: var(--white);
+  padding: 0.9rem 2.5rem;
   border-radius: 0.5rem;
   font-weight: 600;
   transition: background-color 0.2s ease;
 }
 .btn-custom-dark:hover {
   background-color: #343a40;
-  border-color: #343a40;
-  color: white;
+  border-color: #343a40; 
+  color: var(--white);
 }
 
 .social-proof-button {
   background-color: #f1f3f5;
-  border: 1px solid #dee2e6;
+  border: 1px solid var(--bs-gray-300);
   color: #495057;
   font-size: 0.85rem;
   padding: 0.3rem 1rem;
@@ -113,7 +144,7 @@ body {
   background-image: var(--gradient-color);
   border-color: var(--accent-color);
   border-radius: 3rem;
-  color: white;
+  color: var(--white);
   padding-left: .75rem;
   padding-right: .75rem;
   padding-top: .375rem;
@@ -134,55 +165,74 @@ body {
 }
 
 .btn-primary:hover {
-  background-color: transparent; /* Necessary to reveal background-image */
-  background-image: linear-gradient(to right, #64a1d4, #82bbe6); /* Your desired lighter gradient */
-  border-color: #82bbe6; /* Border color matches the lighter end of the gradient */
-  color: white; /* Ensure text remains white on hover */
+  background-image: var(--gradient-color-hover);
+  border-color: var(--accent-color-hover);
+  color: var(--white); 
   box-shadow: 0 4px 8px rgba(100, 161, 212, 0.4);
   transform: translateY(-1px);
 }
 
 .btn-primary:focus,
 .btn-primary:active {
-  background-color: #003e82;
-  border-color: #003e82;
+  background-color: #003e82; 
+  border-color: #003e82; /* TODO add to variables */
   box-shadow: 0 0 0 0.25rem rgba(0, 86, 179, 0.5);
 }
 
+
+/*
+------------------------------------------------------------
+6. Dashboard Preview Section Styles
+------------------------------------------------------------
+*/
+
 .dashboard-preview-section {
-  /* Start with a smaller overlap for mobile, or no overlap if it looks better */
-  margin-top: -3rem; /* Adjust this value for mobile overlap */
+  margin-top: -3rem;
   position: relative;
-  /* Add z-index here if this section needs to sit above another section below it
-     on all screen sizes. E.g., z-index: 10; */
 }
 
-/* Ensure the image itself is responsive within its container */
 .dashboard-img {
-  max-width: 100%; /* Crucial: Image will never exceed its container's width */
-  height: auto; /* Crucial: Maintains aspect ratio */
-  display: block; /* Removes extra space below image */
-  border: 1px solid rgba(0, 0, 0, 0.05); /* Keep border */
-  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1); /* Slightly smaller shadow for mobile */
-  border-radius: 10px; /* Add some rounded corners for a modern look */
-  overflow: hidden; /* Ensures shadow/border respects border-radius */
-  margin-left: auto; /* Center the image horizontally within its column */
-  margin-right: auto; /* Center the image horizontally within its column */
+  max-width: 100%; 
+  height: auto; 
+  display: block; 
+  border: 1px solid rgba(0, 0, 0, 0.05); 
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1); 
+  border-radius: 10px; 
+  overflow: hidden; 
+  margin-left: auto; 
+  margin-right: auto; 
 }
 
-/* If .dashboard-img is a container and you have an <img> inside it: */
 .dashboard-img img {
   max-width: 100%;
   height: auto;
   display: block;
 }
 
-/* --- MEDIA QUERIES (Using min-width, from smallest to largest) --- */
+/*
+------------------------------------------------------------
+7. Utility & Miscellaneous Styles
+------------------------------------------------------------
+*/
 
-/* For devices larger than 576px (Bootstrap 'sm' breakpoint) */
+.upload-container {
+    padding-top: 4rem;
+    margin-top: 100px;
+}
+
+footer {
+    z-index: 1035;
+}
+
+/*
+------------------------------------------------------------
+8. Media Queries (Responsive Design)
+------------------------------------------------------------
+*/
+
 @media (min-width: 576px) {
   .dashboard-preview-section {
-    margin-top: -4rem; /* Increase overlap for small tablets/larger phones */
+    margin-top: -4rem;
   }
   .dashboard-img {
     box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
@@ -192,29 +242,22 @@ body {
   }
 }
 
-/* For devices larger than 768px (Bootstrap 'md' breakpoint - typically tablets/small laptops) */
 @media (min-width: 768px) {
   .dashboard-preview-section {
-    margin-top: -8rem; /* Further increase overlap */
+    margin-top: -8rem; 
   }
   .hero-section {
-    padding-bottom: 3rem; /* Adjust padding for hero section if it affects overlap */
+    padding-bottom: 3rem;
   }
   .dashboard-img {
-    max-width: 900px;
+    max-width: 900px; 
   }
 }
 
-/* For devices larger than 992px (Bootstrap 'lg' breakpoint - typically desktops) */
 @media (min-width: 992px) {
   .dashboard-preview-section {
-    margin-top: -4rem; /* Full overlap for large desktops */
+    margin-top: -4rem;
   }
   .dashboard-img {
-    max-width: 1200px; /* Cap the image width for very large screens */
-  }
-}
-
-footer {
-    z-index: 1035;
-}
+      max-width: 1200px; 
+    }
