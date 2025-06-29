@@ -35,26 +35,6 @@
   background-image: var(--gradient-color);
 }
 
-.loader-div {
-  display: flex;
-  position: relative;
-  height: 50vh;
-  justify-content: center;
-  align-items: center;
-}
-
-.loader {
-  position: absolute;
-  border: 11px solid #f3f3f3; /* Light grey */
-  border-top: 11px solid var(--accent-color);
-  border-radius: 50%;
-  width: 75px;
-  height: 75px;
-  justify-content: center;
-  align-items: center;
-  animation: spin 2s linear infinite;
-}
-
 @keyframes spin {
   0% {
     transform: rotate(0deg);
