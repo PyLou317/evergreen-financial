@@ -14,9 +14,9 @@
     {% comment %}------------ Upload File ------------{% endcomment %}
     {% if user.is_authenticated %}
     {% firstof user.first_name user as name %}
-    <div class="container min-vh-100">
+    <div class="container">
         <div class="row m-3">
-            <h2 id="upload-file-header">Upload Transactions</h2>
+            <h2 id="upload-file-header" class="primary-text">Upload Transactions</h2>
             <h5 class="fw-bold text-muted">{{ name|capfirst }}, upload your transactions from our partners</h5>
         </div>
         
@@ -26,12 +26,15 @@
                     <img id="bank-logo" src="{% static "upload/images/scotiabank-logo.png" %}" alt="Scotia Bank Logo">
                 </div>
                 <div class="col d-flex justify-content-center mx-3">
-                    <img id="bank-logo" src="{% static "upload/images/cibc-logo.png" %}" alt="Scotia Bank Logo">
+                    <img id="bank-logo" src="{% static "upload/images/rbc-logo.png" %}" alt="RBC Bank Logo">
+                </div>
+                <div class="col d-flex justify-content-center mx-3">
+                    <img id="bank-logo" src="{% static "upload/images/cibc-logo.png" %}" alt="CIBC Bank Logo">
                 </div>
             </div>
         </div>
 
-        <div id="upload-page-div" class="container d-flex justify-content-center align-items-center text-center wrapper">
+        <div id="upload-page-div" class="container d-flex justify-content-center align-items-center text-center wrapper mb-5">
             <div id="upload-container" class="container shadow">
                 <div>
                     <form action="/" method="POST" class="dropzone dz" id="upload-div">
