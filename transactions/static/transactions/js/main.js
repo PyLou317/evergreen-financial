@@ -1,12 +1,12 @@
 import { fetchData } from './API.js';
 import { renderHTML, renderStatsBar } from './UI.js';
-import { showSpinner, hideSpinner, forceHideSpinner } from './spinner.js';
+import { showSpinner, forceHideSpinner, hideSpinner } from './spinner.js';
 import { setupPagination } from './pagination.js';
 import { getCategories } from './category_filters.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const apiUrl = '/transactions/transactions_api/';
-  const pageData = document.querySelector('.page-content');
+  const pageData = document.querySelector('.data');
   const tableContent = document.querySelector('[transaction-row-container]');
   const previousPageBtn = document.querySelector('.previous-page a.previousUrl');
   const nextPageBtn = document.querySelector('.next-page a.nextUrl');
@@ -69,8 +69,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 filterBtn.classList.remove('hidden');
               });
             }
-            renderHTML(filterData.results);
             renderStatsBar(filterData.stats);
+            renderHTML(filterData.results);
             setupPagination(filterData, main);
             hideSpinner();
           } catch (error) {
@@ -84,6 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // ----- Search Function ----- //
   const handleSearch = debounce((event) => {
     const searchTerm = event.target.value.trim();
     const searchUrl = searchTerm ? `${apiUrl}?search=${searchTerm}` : apiUrl;
@@ -92,6 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   searchInput.addEventListener('input', handleSearch);
 
+  // ----- Pagination Controls ----- //
   previousPageBtn.addEventListener('click', (event) => {
     event.preventDefault();
     if (previousPageBtn.parentElement.classList.contains('disabled')) {
