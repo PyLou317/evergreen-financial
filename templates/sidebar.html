@@ -31,38 +31,20 @@
             <a href="#" id="profile-link" class="d-flex profile-link align-items-center text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="bi bi-person-circle me-2"></i>
                 <div class="ms-3 profile-info">
-                    <strong>{{ user.username }}</strong>
+                    {% firstof user.first_name user as name %}
+                    <strong>{{ name }}</strong>
                 </div>
             </a>
             <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
             <li><a class="dropdown-item" href="{% url 'user:update_profile' %}">Settings</a></li>
             <li><a class="dropdown-item" href="{% url 'user:profile_home' %}">Profile</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">Sign out</a>
-                </form>
+            <li>
+                <a type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">Sign out</a>
             </li>
         </ul>
         </div>
     </div>
 </nav>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Logout Confirmation</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p class="card-text mb-4">Are you sure you want to logout?</p>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn fw-bold" data-bs-dismiss="modal">Cancel</button>
-        <form method="post" action="{% url 'account_logout' %}">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-primary btn-block">Confirm</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
+{% include 'signout_modal.html' %}
