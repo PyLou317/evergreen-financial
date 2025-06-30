@@ -37,11 +37,16 @@
         <div id="upload-page-div" class="container d-flex justify-content-center align-items-center text-center wrapper mb-5">
             <div id="upload-container" class="container shadow">
                 <div>
-                    <form action="/" method="POST" class="dropzone dz" id="upload-div">
+                    <div>
+                        <form action=" " method="POST" class="dropzone dz" id="upload-div">
+                            {% csrf_token %}
+                        </form>
+                    </div>
+                    <div class="">
                         {% csrf_token %}
-                    </form>
-                    {% crispy upload_form %}
-                        <div id="fileTypeError" class="text-danger d-none"></div>
+                        {% crispy upload_form %}
+                            <div id="fileTypeError" class="text-danger d-none"></div>
+                    </div>
                 </div>
             </div>
         </div>
