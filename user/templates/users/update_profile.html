@@ -1,6 +1,6 @@
-{% extends 'finance_tracker/base.html' %} 
+{% extends 'base.html' %} 
 {% load crispy_forms_tags %} 
-{% crispy profile_update_form %}
+{% comment %} {% crispy profile_update_form %} {% endcomment %}
 {% load static %} 
 
 {% block title %}Update User Profile{%endblock %} 
@@ -9,13 +9,23 @@
 <div class="container my-5">
     <div class="row justify-content-center">
         <div class="col-lg-8 col-xl-6">
-            <div class="card shadow p-4">
-                <div class="card-header bg-success text-white text-center">
+            <div class="card shadow-sm p-4">
+                <div class="card-header border-0">
                     <i class="bi bi-box-arrow-in-right me-2"></i> Update Profile
                 </div>
                 <div class="card-body">
-                    {% csrf_token %}
-                    {% crispy form %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    <form method="post">
+                        {% csrf_token %}
+                        {% crispy form %}
+                    </form>
                 </div>
             </div>
         </div>
