@@ -24,12 +24,12 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
     
-    // Dropzone.discover();
     Dropzone.options.uploadDiv = {
         maxFiles: 10,
         maxFilesize: 2,
         acceptedFiles: '.csv',
     };
     
+    Dropzone.discover();
 });
 
