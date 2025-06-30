@@ -164,8 +164,8 @@ LOGOUT_REDIRECT_URL = '/'
 
 SOCIALACCOUNT_AUTO_SIGNUP = True
 
-ACCOUNT_USER_MODEL_USERNAME_FIELD = None
-ACCOUNT_SIGNUP_FIELDS = ['email*', 'password1*', 'password2*']
+# ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+ACCOUNT_SIGNUP_FIELDS = ['user_name*', 'email*', 'password1*', 'password2*']
 ACCOUNT_LOGIN_METHODS = {'email'}
 
 SOCIALACCOUNT_PROVIDERS = {
@@ -196,3 +196,6 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
 }
+
+# Email Settings (for development)
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
