@@ -20,17 +20,18 @@
 }
 
 #login-btn {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
     color: var(--white);
     width: 100%;
 }
 
 #login-btn:hover {
-    background-color: rgb(41, 212, 212);
-    border-color: rgb(41, 212, 212);
+    background-color: var(--accent-color-hover);
+    border-color: var(--accent-color-hover);
 }
 
 #login-google-btn {
     width: 100%;
+    border-color: var(--accent-color-hover);
 }
