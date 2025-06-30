@@ -22,7 +22,7 @@ export function hideSpinner() {
         if (pageData) {
             pageData.style.display = 'relative';
         }
-    }, 1000);
+    }, 500);
 }
 
 
