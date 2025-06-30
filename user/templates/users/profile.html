@@ -9,32 +9,23 @@
 {% block title %}User Profile{% endblock %}
 
 {% block content %}
-<div class="container col-lg-9 col-sm-12  my-5">
-    <div class="card shadow mb-4">
-        <div class="card-header bg-secondary text-white">
+<div class="container col-lg-6 col-sm-12  my-5">
+    <div class="card shadow-sm mb-3">
+        <div class="card-header border-0">
             <i class="bi bi-person-circle me-2"></i> Your Profile Information
         </div>
-        <div class="card-body">
+        <div class="card-body ms-2">
             <div class="row">
-                <div class="col-md-3 text-center py-5">
-                    {% if user_profile.avatar %}
-                        <img src="{{ user_profile.avatar.url }}" alt="Profile Avatar" class="img-fluid" style="max-width: 150px; max-height: 150px; border-radius: 50%;">
-                    {% else %}
-                        <p>No Profile Picture</p>
-                        <i class="bi bi-person-circle" style="font-size: 5rem;"></i> <p class="text-muted">Default Avatar</p>
-                    {% endif %}
-                </div>
-                <div class="col-md-8 ms-5 align-self-center">
+                {% comment %} <div class="col-md-3 text-center py-5">
+                    <i class="bi bi-person-circle" style="font-size: 5rem;"></i>
+                </div> {% endcomment %}
+                <div class="col align-self-center">
                     <dl class="row">
                         <dt class="col-sm-3 fw-bold">Username:</dt>
-                        <dd class="col-sm-9">{{ user.username }}</dd>
+                        <dd class="col-sm-9">{{ user.username|default:"N/A" }}</dd>
 
                         <dt class="col-sm-3 fw-bold">Email:</dt>
-                        {% if user.email %}
-                            <dd class="col-sm-9">{{ user.email }}</dd>
-                        {% else %}
-                            <dd class="col-sm-9">N/A</dd>
-                        {% endif %}
+                        <dd class="col-sm-9">{{ user.email|default:"N/A" }}</dd>
 
                         <dt class="col-sm-3 fw-bold">First Name:</dt>
                         <dd class="col-sm-9">{{ user.first_name|default:"N/A" }}</dd>
@@ -47,11 +38,11 @@
         </div>
     </div>
 
-    <div class="card shadow mb-4">
-        <div class="card-header bg-secondary text-white">
+    <div class="card shadow-sm mb-3">
+        <div class="card-header border-0">
             <i class="bi bi-gear-fill me-2"></i> Account Actions
         </div>
-        <div class="card-body">
+        <div class="card-body ms-2">
             <ul class="list-unstyled">
                 <li>
                     <a href="{% url 'user:update_profile' %}" class="btn btn-outline-secondary btn-sm mb-2">
@@ -64,19 +55,19 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{% url 'account_logout' %}" class="btn btn-danger btn-sm">
-                        <i class="bi bi-box-arrow-right me-1"></i> Logout
+                    <a type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal" style="border-radius: 30px;">
+                        <i class="bi bi-box-arrow-right me-1"></i> Sign out
                     </a>
                 </li>
             </ul>
         </div>
     </div>
 
-    <div class="card shadow">
-        <div class="card-header bg-secondary text-white">
+    <div class="card shadow-sm">
+        <div class="card-header border-0">
             <i class="bi bi-person-plus-fill me-2"></i> Connect Social Accounts
         </div>
-        <div class="card-body">
+        <div class="card-body ms-2">
             <ul class="list-unstyled">
                 {% get_social_accounts user as accounts %}
                     {% if accounts.google %}
@@ -95,3 +86,5 @@
     </div>
 </div>
 {% endblock %}
+
+{% include 'signout_modal.html' %}
