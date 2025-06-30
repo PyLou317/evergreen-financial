@@ -13,7 +13,7 @@
             <div class="d-flex row m-2 mb-4">
                 {% firstof user.first_name user as name %}
                 <div class="col mt-3">
-                    <h2 class="dashboard-greeting-msg fw-bold">Good {{ now|greeting }}, {{ name }}!</h2>   
+                    <h2 class="dashboard-greeting-msg primary-text fw-bold">Good {{ now|greeting }}, {{ name }}!</h2>   
                     <small>Today is {{ today|date:"M d, Y" }} and the time is {{ today|date:"P" }}</small>
                 </div>
             </div>
