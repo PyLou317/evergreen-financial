@@ -63,7 +63,7 @@ class TransactionUpdateView(LoginRequiredMixin, UpdateView):
     def get_form(self, form_class = None):
         form = super().get_form(form_class)
         form.fields['date'].disabled = True
-        form.fields['amount'].disabled = True
+        # form.fields['amount'].disabled = True
         return form
     
     def get_success_url(self):

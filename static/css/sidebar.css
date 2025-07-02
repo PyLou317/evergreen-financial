@@ -4,7 +4,7 @@
 }
 
 .dropdown-menu {
-    z-index: 1000 !important;
+  z-index: 1000 !important;
 }
 
 .sidebar {
@@ -18,10 +18,10 @@
 }
 
 .sidebar.collapsed {
-    .toggle-btn {
-        left: 65px;
-        transition: all 0.3s ease;
-    }
+  .toggle-btn {
+    left: 65px;
+    transition: all 0.3s ease;
+  }
 }
 
 .hide {
@@ -68,16 +68,10 @@
   bottom: 0;
 }
 
-@media screen and (max-width: 768px) {
-  .profile-section {
-    bottom: 45%;
-  }
-}
-
 .toggle-btn {
   position: absolute;
-  left: 265px;
-  top: 20px;
+  left: 275px;
+  top: 30px;
   background: white;
   border-radius: 50%;
   width: 30px;
@@ -123,11 +117,68 @@
   color: #a0a3bd;
   transition: all 0.2s ease;
   border-radius: 8px;
-  margin: 4px 16px;
+  margin: 1px 0.5rem;
   white-space: nowrap;
-  overflow: hidden;
 }
 
 .dropdown-toggle::after {
-    display: none !important    ;
+  display: none !important    ;
+}
+
+@media screen and (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: fit-content;
+  }
+
+  .brand-div {
+    display: none !important;
+  }
+
+  .toggle-btn {
+    display: none !important;
+  }
+
+  .logo-text {
+    display: none !important;
+  }
+
+  .profile-section {
+    margin-top: 0 !important;
+    bottom: 45%;
+  }
+
+  .nav {
+    margin-top: 0 !important;
+  }
+
+  #sidebarNavContent {
+    margin-top: 1rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .sidebar .navbar-toggler {
+    display: none !important;
+  }
+
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .sidenav .navbar-collapse {
+    display: flex !important; /* Force it to always be visible and a flex container on desktop */
+    flex-direction: column; /* Stack nav items vertically */
+    width: 100%; /* Take full width of the sidebar */
+    flex-grow: 1; /* Allow it to grow and take available vertical space */
+    align-items: flex-start; /* Align links to the left */
+    padding: 0; /* Ensure no extra padding pushing content */
+    margin: 0;
+  }
+
+  .nav {
+    flex-direction: column; /* Stack nav items vertically */
+  }
 }

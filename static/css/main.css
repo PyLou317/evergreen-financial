@@ -16,7 +16,7 @@
   --white: #ffffff;
   --bs-gray-300: #dee2e6;
   --bs-light: #f8f9fa;
-  --sidebar-width: 280px;
+  --sidebar-width: 290px;
   --sidebar-width-collapsed: 80px;
 }
 
@@ -49,6 +49,12 @@ body {
 .content-area {
   display: flex;
   flex-grow: 1;
+}
+
+@media (max-width: 768px) {
+  .content-area {
+    display: block;                                                         
+  }
 }
 
 .main-content {

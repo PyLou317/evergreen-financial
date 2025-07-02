@@ -1,49 +1,69 @@
-<nav class="sidebar d-flex flex-column flex-shrink-0">
-    <button class="toggle-btn" onclick="toggleSidebar()">
-        <i class="fas fa-chevron-left"></i>
-    </button>
+<nav class="sidebar navbar navbar-expand-md sticky-top navbar-dark d-flex flex-column flex-shrink-0" id="mainSideNav">
+    <div class="container-fluid d-flex flex-column align-items-start h-100">
 
-    <div class="p-4">
-        <h4 class="logo-text fw-bold mb-0">Evergreen Financial</h4>
-    </div>
-
-    <div class="nav flex-column">
-        <a href="{% url 'dashboard:dashboard_home' %}" id="dashboard-link" class="sidebar-link text-decoration-none p-3">
-            <i class="bi bi-house-door me-2"></i>
-            <span class="hide-on-collapse">Dashboard</span>
-        </a>
-        <a href="{% url 'transactions:transactions' %}" id="transactions-link" class="sidebar-link text-decoration-none p-3">
-            <i class="fas fa-chart-bar me-3"></i>
-            <span class="hide-on-collapse">Transactions</span>
-        </a>
-        <a href="{% url 'upload:file_upload' %}" id="upload-link" class="sidebar-link text-decoration-none p-3">
-            <i class="bi bi-cloud-arrow-up me-2"></i>
-            <span class="hide-on-collapse">Upload</span>
-        </a>
-        <a href="#" id="reports-link" class="sidebar-link text-decoration-none p-3">
-            <i class="bi bi-bar-chart-line me-2"></i>
-            <span class="hide-on-collapse">Reports</span>
-        </a>
-    </div>
-
-    <div class="dropdown profile-section p-3 mt-5">
-        <div class="d-flex align-items-center">
-            <a href="#" id="profile-link" class="d-flex profile-link align-items-center text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="bi bi-person-circle me-2"></i>
-                <div class="ms-3 profile-info">
-                    {% firstof user.first_name user as name %}
-                    <strong>{{ name }}</strong>
-                </div>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-            <li><a class="dropdown-item" href="{% url 'user:update_profile' %}">Settings</a></li>
-            <li><a class="dropdown-item" href="{% url 'user:profile_home' %}">Profile</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li>
-                <a type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">Sign out</a>
-            </li>
-        </ul>
+        <div class="brand-div ps-4 pt-4 mb-4 d-flex align-items-center justify-content-between w-100">
+            <h4 class="logo-text fw-bold mb-0 hide-on-collapse">Evergreen Financial</h4>
+            <button class="toggle-btn d-none d-md-block" onclick="toggleSidebar()">
+                 <i class="fas fa-chevron-left"></i>
+            </button>
         </div>
+
+
+        <button class="navbar-toggler d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarNavContent" aria-controls="sidebarNavContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+        <div class="collapse navbar-collapse flex-column align-items-start w-100" id="sidebarNavContent">
+
+            <ul class="navbar-nav flex-column w-100"> {# mb-auto pushes profile to bottom #}
+                <li class="nav-item w-100">
+                    <a href="{% url 'dashboard:dashboard_home' %}" id="dashboard-link" class="sidebar-link nav-link text-decoration-none p-3">
+                        <i class="bi bi-house-door me-2"></i>
+                        <span class="hide-on-collapse">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item w-100">
+                    <a href="{% url 'transactions:transactions' %}" id="transactions-link" class="sidebar-link nav-link text-decoration-none p-3">
+                        <i class="fas fa-chart-bar me-3"></i>
+                        <span class="hide-on-collapse">Transactions</span>
+                    </a>
+                </li>
+                <li class="nav-item w-100">
+                    <a href="{% url 'upload:file_upload' %}" id="upload-link" class="sidebar-link nav-link text-decoration-none p-3">
+                        <i class="bi bi-cloud-arrow-up me-2"></i>
+                        <span class="hide-on-collapse">Upload</span>
+                    </a>
+                </li>
+                <li class="nav-item w-100">
+                    <a href="#" id="reports-link" class="sidebar-link nav-link text-decoration-none p-3">
+                        <i class="bi bi-bar-chart-line me-2"></i>
+                        <span class="hide-on-collapse">Reports</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="dropdown profile-section p-3">
+                <div class="d-flex align-items-center">
+                    <a href="#" id="profile-link" class="d-flex profile-link align-items-center text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-person-circle me-2"></i>
+                        <div class="ms-3 profile-info hide-on-collapse">
+                            {% firstof user.first_name user as name %}
+                            <strong>{{ name }}</strong>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                        <li><a class="dropdown-item" href="{% url 'user:update_profile' %}">Settings</a></li>
+                        <li><a class="dropdown-item" href="{% url 'user:profile_home' %}">Profile</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <a type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">Sign out</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
     </div>
 </nav>
 
