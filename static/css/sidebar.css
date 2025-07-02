@@ -51,6 +51,7 @@
 .logo-text {
   background: linear-gradient(45deg, #6b8cff, #8b9fff);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   transition: opacity 0.3s ease;
 }

@@ -53,7 +53,7 @@ body {
 
 @media (max-width: 768px) {
   .content-area {
-    display: block;                                                         
+    display: block;
   }
 }
 
@@ -243,6 +243,7 @@ body {
     /* Use individual color variables if defined */ to(var(--gradient-end-color, #6579e0))
   );
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
