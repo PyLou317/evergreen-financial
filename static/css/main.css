@@ -60,7 +60,7 @@ body {
 .main-content {
   flex-grow: 1;
   background-color: var(--bs-light);
-  padding: 20px;
+  /* padding: 20px; */
   transition: all 0.3s ease;
 }
 
@@ -320,6 +320,10 @@ footer {
   }
   .dashboard-img {
     max-width: 900px;
+  }
+
+  .main-content {
+    padding: 20px;
   }
 }
 

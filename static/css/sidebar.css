@@ -136,10 +136,6 @@
     display: none !important;
   }
 
-  .toggle-btn {
-    display: none !important;
-  }
-
   .logo-text {
     display: none !important;
   }
@@ -156,6 +152,10 @@
   #sidebarNavContent {
     margin-top: 1rem;
   }
+
+  .sidebar-link {
+    margin: 4px 0;
+  }
 }
 
 @media screen and (min-width: 768px) {
@@ -170,16 +170,16 @@
   }
 
   .sidenav .navbar-collapse {
-    display: flex !important; /* Force it to always be visible and a flex container on desktop */
-    flex-direction: column; /* Stack nav items vertically */
-    width: 100%; /* Take full width of the sidebar */
-    flex-grow: 1; /* Allow it to grow and take available vertical space */
-    align-items: flex-start; /* Align links to the left */
-    padding: 0; /* Ensure no extra padding pushing content */
+    display: flex !important;
+    flex-direction: column;
+    width: 100%;
+    flex-grow: 1;
+    align-items: flex-start;
+    padding: 0;
     margin: 0;
   }
 
   .nav {
-    flex-direction: column; /* Stack nav items vertically */
+    flex-direction: column;
   }
 }

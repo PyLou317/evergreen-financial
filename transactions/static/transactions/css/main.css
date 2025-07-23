@@ -162,6 +162,10 @@
   .date-col {
     max-width: fit-content;
   }
+
+  .filter-badge {
+    margin-top: .5rem
+  }
 }
 
 @media (min-width: 768px) {
